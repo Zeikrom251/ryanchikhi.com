@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/atom-one-dark.min.css" />
+    <title>Mini Games</title>
+</head>
+<body>
+    <!-- header -->
+    <section class="header">
+        <nav>
+            <a href="index.html"><img src="images/logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">GAMES</a></li>
+                    <li><a href="#">BLOG</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="info">
+            <h1>Welcome to the <span class="MHA">Mini-Game</span> website</h1>
+            <p>Here you can find some game that helped me to learn more about Javascript</p>
+        </div>
+    </section>
+
+
+    <!-- TIC TAC TOE -->
+    <section class="body">
+        <div class="party">
+            <h1>Games</h1>
+            <p>Here are the three first game, that helped me to progress with Javascript</p>
+        </div>
+
+        <div class="row">
+            <div class="MHA-col">
+                <h2>Tic Tac Toe</h2>
+                <p>For the Tic Tac Toe game, I did two versions, one in Javascript and another one in C++,
+                    you can find the code down here.
+                </p>
+                <a href="games/TicTacToe/tictactoe.html" target="_blank"><img src="images/tictactoe.jpg"></a>
+                <div class="row-s">
+                    <!-- HTML -->
+                    <div class="hobbie-col">
+                        <h3>HTML</h3>
+                        <pre>
+                            <code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"&gt;
+        &lt;title&gt;Tic Tac Toe&lt;/title&gt;
+        &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+        &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+        &lt;link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet"&gt;
+        &lt;link rel="stylesheet" href="tictactoe.css"&gt;
+        &lt;script src="tictactoe.js"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Tic Tac Toe&lt;/h1&gt;
+        &lt;hr&gt;
+        &lt;br&gt;
+        &lt;!-- 3x3 --&gt;
+        &lt;div id="board"&gt;&lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;                      
+                            </code>
+                        </pre>
+                    </div>
+                    <!-- CSS -->
+                    <div class="hobbie-col">
+                        <h3>CSS</h3>
+                        <pre>
+                            <code class="css">                       
+body {
+    font-family: 'Indie Flower, cursive';
+    text-align: center;
+}
+
+hr {
+    width: 500px;
+    height: 3px;
+    background-color: black;
+}
+
+#board {
+    width: 450px;
+    height: 450px;
+
+    /* background-color: yellow; */
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tile {
+    width: 147px;
+    height: 147px;
+
+    font-size: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.horizontal-line {
+    border-bottom: 3px solid black;
+}
+
+.vertical-line {
+    border-right: 3px solid black;
+}
+
+.winner {
+    background-color: lightgray;
+    color: red;
+}
+            
+                            </code>
+                        </pre>
+                    </div>
+                    <!-- JS -->
+                    <div class="hobbie-col">
+                        <h3>Javascript</h3>
+                        <pre>
+                            <code class="js">
+var board;
+var playerO = "O";
+var playerX = "X";
+var currPlayer = playerO;
+var gameOver = false;
+
+window.onload = function() {
+    setGame();
+}
+
+function setGame() {
+    board = [
+                [' ', ' ', ' '],
+                [' ', ' ', ' '],
+                [' ', ' ', ' ']
+            ]
+
+    for (let r = 0; r < 3; r++) {
+        for (let c = 0; c < 3; c++) {
+            let tile = document.createElement("div");
+            tile.id = r.toString() + "-" + c.toString();
+            tile.classList.add("tile");
+            if (r == 0 || r == 1) {
+                tile.classList.add("horizontal-line");
+            }
+            if (c == 0 || c == 1) {
+                tile.classList.add("vertical-line");
+            }
+            tile.innerText = "";
+            tile.addEventListener("click", setTile);
+            document.getElementById("board").appendChild(tile);
+        }
+    }
+}
+
+function setTile() {
+    if (gameOver) {
+        return;
+    }
+
+    let coords = this.id.split("-");    
+    let r = parseInt(coords[0]);
+    let c = parseInt(coords[1]);
+
+    if (board[r][c] != ' ') { 
+        //already taken spot
+        return;
+    }
+    
+    board[r][c] = currPlayer; 
+    this.innerText = currPlayer; //mark the board on html
+
+    //change players
+    if (currPlayer == playerO) {
+        currPlayer = playerX;
+    }
+    else {
+        currPlayer = playerO;
+    }
+
+    
+    checkWinner();
+}
+
+
+function checkWinner() {
+    //horizontally, check 3 rows
+    for (let r = 0; r < 3; r++) {
+        if (board[r][0] == board[r][1] && board[r][1] == board[r][2] && board[r][0] != ' ') {
+            //if we found the winning row
+            //apply the winner style to that row
+            for (let i = 0; i < 3; i++) {
+                let tile = document.getElementById(r.toString() + "-" + i.toString());
+                tile.classList.add("winner");
+            }
+            gameOver = true;
+            return;
+        }
+    }
+
+    //vertically, check 3 columns
+    for (let c = 0; c < 3; c++) {
+        if (board[0][c] == board[1][c] && board[1][c] ==  board[2][c] && board[0][c] != ' ') {
+            //if we found the winning col
+            //apply the winner style to that col
+            for (let i = 0; i < 3; i++) {
+                let tile = document.getElementById(i.toString() + "-" + c.toString());                
+                tile.classList.add("winner");
+            }
+            gameOver = true;
+            return;
+        }
+    }
+
+    //diagonally
+    if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != ' ') {
+        for (let i = 0; i < 3; i++) {
+            let tile = document.getElementById(i.toString() + "-" + i.toString());                
+            tile.classList.add("winner");
+        }
+        gameOver = true;
+        return;
+    }
+
+    //anti-diagonally
+    if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != ' ') {
+        
+        let tile = document.getElementById("0-2");                
+        tile.classList.add("winner");
+
+        
+        tile = document.getElementById("1-1");                
+        tile.classList.add("winner");
+
+        
+        tile = document.getElementById("2-0");                
+        tile.classList.add("winner");
+        gameOver = true;
+        return;
+    }
+}
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CONNECT4 -->
+    <section class="body">
+
+        <div class="row">
+            <div class="MHA-col">
+                <h2>Connect 4</h2>
+                <p>For connect 4, it was harder to make because of the Javascript part.</p>
+                <a href="games/Connect4/connect4.html" target="_blank"><img src="images/connect.jpg"></a>
+
+                <div class="row-s">
+                    <!-- HTML -->
+                    <div class="hobbie-col">
+                        <h3>HTML</h3>
+                        <pre>
+                            <code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"&gt;
+        &lt;title&gt;Connect 4&lt;/title&gt;
+
+        &lt;link rel="stylesheet" href="connect4.css"&gt;
+        &lt;script src="connect4.js"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;h1&gt;Connect 4&lt;/h1&gt;
+        &lt;h2 id="winner"&gt;&lt;/h2&gt;
+        &lt;div id="board"&gt;
+
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                            </code>
+                        </pre>
+                    </div>
+                    <!-- CSS -->
+                    <div class="hobbie-col">
+                        <h3>CSS</h3>
+                        <pre>
+                            <code class="css">
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#board {
+    height: 540px;
+    width: 630px;
+    background-color: blue;
+    border: 10px solid navy;
+    
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tile {
+    height: 70px;
+    width: 70px;
+    margin: 5px;
+
+    /* Circle */
+    background-color: white;
+    border-radius: 50%;
+    border: 5px solid navy;
+}
+
+.red-piece {
+    background-color: red;
+}
+
+.yellow-piece {
+    background-color: yellow;
+}
+                            </code>
+                        </pre>
+                    </div>
+                    <!-- JS -->
+                    <div class="hobbie-col">
+                        <h3>Javascript</h3>
+                        <pre>
+                            <code class="js">
+var playerRed = "R";
+var playerYellow = "Y";
+var currPlayer = playerRed;
+
+var gameOver = false;
+var board;
+
+var rows = 6;
+var columns = 7;
+var currColumns = []; 
+
+window.onload = function() {
+    setGame();
+}
+
+function setGame() {
+    board = [];
+    currColumns = [5, 5, 5, 5, 5, 5, 5];
+
+    for (let r = 0; r < rows; r++) {
+        let row = [];
+        for (let c = 0; c < columns; c++) {
+            // JS
+            row.push(' ');
+            // HTML
+            let tile = document.createElement("div");
+            tile.id = r.toString() + "-" + c.toString();
+            tile.classList.add("tile");
+            tile.addEventListener("click", setPiece);
+            document.getElementById("board").append(tile);
+        }
+        board.push(row);
+    }
+}
+
+function setPiece() {
+    if (gameOver) {
+        return;
+    }
+
+    //get coords of that tile clicked
+    let coords = this.id.split("-");
+    let r = parseInt(coords[0]);
+    let c = parseInt(coords[1]);
+
+    
+    r = currColumns[c]; 
+
+    if (r < 0) { // board[r][c] != ' '
+        return;
+    }
+
+    board[r][c] = currPlayer; //update JS board
+    let tile = document.getElementById(r.toString() + "-" + c.toString());
+    if (currPlayer == playerRed) {
+        tile.classList.add("red-piece");
+        currPlayer = playerYellow;
+    }
+    else {
+        tile.classList.add("yellow-piece");
+        currPlayer = playerRed;
+    }
+
+    r -= 1; //update the row height for that column
+    currColumns[c] = r; //update the array
+
+    checkWinner();
+}
+
+function checkWinner() {
+     // horizontal
+     for (let r = 0; r < rows; r++) {
+         for (let c = 0; c < columns - 3; c++){
+            if (board[r][c] != ' ') {
+                if (board[r][c] == board[r][c+1] && board[r][c+1] == board[r][c+2] && board[r][c+2] == board[r][c+3]) {
+                    setWinner(r, c);
+                    return;
+                }
+            }
+         }
+    }
+
+    // vertical
+    for (let c = 0; c < columns; c++) {
+        for (let r = 0; r < rows - 3; r++) {
+            if (board[r][c] != ' ') {
+                if (board[r][c] == board[r+1][c] && board[r+1][c] == board[r+2][c] && board[r+2][c] == board[r+3][c]) {
+                    setWinner(r, c);
+                    return;
+                }
+            }
+        }
+    }
+
+    // anti diagonal
+    for (let r = 0; r < rows - 3; r++) {
+        for (let c = 0; c < columns - 3; c++) {
+            if (board[r][c] != ' ') {
+                if (board[r][c] == board[r+1][c+1] && board[r+1][c+1] == board[r+2][c+2] && board[r+2][c+2] == board[r+3][c+3]) {
+                    setWinner(r, c);
+                    return;
+                }
+            }
+        }
+    }
+
+    // diagonal
+    for (let r = 3; r < rows; r++) {
+        for (let c = 0; c < columns - 3; c++) {
+            if (board[r][c] != ' ') {
+                if (board[r][c] == board[r-1][c+1] && board[r-1][c+1] == board[r-2][c+2] && board[r-2][c+2] == board[r-3][c+3]) {
+                    setWinner(r, c);
+                    return;
+                }
+            }
+        }
+    }
+}
+
+function setWinner(r, c) {
+    let winner = document.getElementById("winner");
+    if (board[r][c] == playerRed) {
+        winner.innerText = "Red Wins";             
+    } else {
+        winner.innerText = "Yellow Wins";
+    }
+    gameOver = true;
+}
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 2048 -->
+    <section class="body">
+        <div class="row">
+            <div class="MHA-col">
+                <h2>2048</h2>
+                <p>The 2048, was also hard to make, and it also hard to play !</p>
+                <a href="games/2048/2048.html" target="_blank"><img src="images/2048.jpg"></a>
+
+                <div class="row-s">
+                    <!-- HTML -->
+                    <div class="hobbie-col">
+                        <h3>HTML</h3>
+                        <pre>
+                            <code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;link rel="stylesheet" href="2048.css"&gt;
+        &lt;script src="2048.js"&gt;&lt;/script&gt;
+        &lt;title&gt;2048&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;2048&lt;/h1&gt;
+        &lt;hr&gt;
+        &lt;h2&gt;Score: &lt;span id="score"&gt;0&lt;/span&gt;&lt;/h2&gt;
+        &lt;div id="board"&gt;
+            
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt; 
+                            </code>
+                        </pre>
+                    </div>
+                    <!-- CSS -->
+                    <div class="hobbie-col">
+                        <h3>CSS</h3>
+                        <pre>
+                            <code class="css">
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+hr {
+    width: 500px;
+}
+
+#board {
+    width: 400px;
+    height: 400px;
+
+    background-color: #cdc1b5;
+    border: 6px solid #bbada0;
+
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tile {
+    width: 90px;
+    height: 90px;
+    border: 5px solid #bbada0;
+
+    font-size: 40px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* colored tiles */
+
+.x2 {
+    background-color: #eee4da;
+    color: #727371;
+}
+
+.x4 {
+    background-color: #ece0ca;
+    color: #727371;
+}
+
+.x8 {
+    background-color: #f4b17a;
+    color: white;
+}
+
+.x16{
+    background-color: #f59575;
+    color: white;
+}
+
+.x32{
+    background-color: #f57c5f;
+    color: white;
+}
+
+.x64{
+    background-color: #f65d3b;
+    color: white;
+}
+
+.x128{
+    background-color: #edce71;
+    color: white;
+}
+
+.x256{
+    background-color: #edcc63;
+    color: white;
+}
+
+.x512{
+    background-color: #edc651;
+    color: white;
+}
+
+.x1024{
+    background-color: #eec744;
+    color: white;
+}
+
+.x2048{
+    background-color: #ecc230;
+    color: white;
+}
+
+.x4096 {
+    background-color: #fe3d3d;
+    color: white;
+}
+
+.x8192 {
+    background-color: #ff2020;
+    color: white;
+}
+                            </code>
+                        </pre>
+                    </div>
+                    <!-- JS -->
+                    <div class="hobbie-col">
+                        <h3>Javascript</h3>
+                        <pre>
+                            <code class="js">
+var board;
+var score = 0;
+var rows = 4;
+var columns = 4;
+
+window.onload = function() {
+    setGame();
+}
+
+function setGame() {
+    // board = [
+    //     [2, 2, 2, 2],
+    //     [2, 2, 2, 2],
+    //     [4, 4, 8, 8],
+    //     [4, 4, 8, 8]
+    // ];
+
+    board = [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+    ]
+
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            let tile = document.createElement("div");
+            tile.id = r.toString() + "-" + c.toString();
+            let num = board[r][c];
+            updateTile(tile, num);
+            document.getElementById("board").append(tile);
+        }
+    }
+    //create 2 to begin the game
+    setTwo();
+    setTwo();
+
+}
+
+function updateTile(tile, num) {
+    tile.innerText = "";
+    tile.classList.value = ""; //clear the classList
+    tile.classList.add("tile");
+    if (num > 0) {
+        tile.innerText = num.toString();
+        if (num <= 4096) {
+            tile.classList.add("x"+num.toString());
+        } else {
+            tile.classList.add("x8192");
+        }                
+    }
+}
+
+document.addEventListener('keyup', (e) => {
+    if (e.code == "ArrowLeft") {
+        slideLeft();
+        setTwo();
+    }
+    else if (e.code == "ArrowRight") {
+        slideRight();
+        setTwo();
+    }
+    else if (e.code == "ArrowUp") {
+        slideUp();
+        setTwo();
+
+    }
+    else if (e.code == "ArrowDown") {
+        slideDown();
+        setTwo();
+    }
+    document.getElementById("score").innerText = score;
+})
+
+function filterZero(row){
+    return row.filter(num => num != 0); //create new array of all nums != 0
+}
+
+function slide(row) {
+     
+    row = filterZero(row); 
+    for (let i = 0; i < row.length-1; i++){
+        if (row[i] == row[i+1]) {
+            row[i] *= 2;
+            row[i+1] = 0;
+            score += row[i];
+        }
+    } 
+    row = filterZero(row); 
+    
+    while (row.length < columns) {
+        row.push(0);
+    } 
+    return row;
+}
+
+function slideLeft() {
+    for (let r = 0; r < rows; r++) {
+        let row = board[r];
+        row = slide(row);
+        board[r] = row;
+        for (let c = 0; c < columns; c++){
+            let tile = document.getElementById(r.toString() + "-" + c.toString());
+            let num = board[r][c];
+            updateTile(tile, num);
+        }
+    }
+}
+
+function slideRight() {
+    for (let r = 0; r < rows; r++) {
+        let row = board[r];         //[0, 2, 2, 2]
+        row.reverse();              //[2, 2, 2, 0]
+        row = slide(row)            //[4, 2, 0, 0]
+        board[r] = row.reverse();   //[0, 0, 2, 4];
+
+        for (let c = 0; c < columns; c++){
+            let tile = document.getElementById(r.toString() + "-" + c.toString());
+            let num = board[r][c];
+            updateTile(tile, num);
+        }
+    }
+}
+
+function slideUp() {
+    for (let c = 0; c < columns; c++) {
+        let row = [board[0][c], board[1][c], board[2][c], board[3][c]];
+        row = slide(row);
+        
+        for (let r = 0; r < rows; r++){
+            board[r][c] = row[r];
+            let tile = document.getElementById(r.toString() + "-" + c.toString());
+            let num = board[r][c];
+            updateTile(tile, num);
+        }
+    }
+}
+
+function slideDown() {
+    for (let c = 0; c < columns; c++) {
+        let row = [board[0][c], board[1][c], board[2][c], board[3][c]];
+        row.reverse();
+        row = slide(row);
+        row.reverse();
+
+        for (let r = 0; r < rows; r++){
+            board[r][c] = row[r];
+            let tile = document.getElementById(r.toString() + "-" + c.toString());
+            let num = board[r][c];
+            updateTile(tile, num);
+        }
+    }
+}
+
+function setTwo() {
+    if (!hasEmptyTile()) {
+        return;
+    }
+    let found = false;
+    while (!found) {
+        //find random row and column to place a 2 in
+        let r = Math.floor(Math.random() * rows);
+        let c = Math.floor(Math.random() * columns);
+        if (board[r][c] == 0) {
+            board[r][c] = 2;
+            let tile = document.getElementById(r.toString() + "-" + c.toString());
+            tile.innerText = "2";
+            tile.classList.add("x2");
+            found = true;
+        }
+    }
+}
+
+function hasEmptyTile() {
+    let count = 0;
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            if (board[r][c] == 0) { 
+                return true;
+            }
+        }
+    }
+    return false;
+}
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SCRIPT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js"></script>
+
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+</body>
+</html>
