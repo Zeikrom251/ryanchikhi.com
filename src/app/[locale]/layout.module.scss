@@ -1,0 +1,111 @@
+// Full viewport rather than a 55%-tall band: the old band clipped its own
+// blurred blobs at the bottom edge, which drew a hard horizontal seam across
+// the page. Now nothing is cut mid-screen, and the extra colour stops (plus
+// oklab interpolation) keep the fade from banding on wide displays.
+.gradient {
+  position: fixed;
+  inset: 0;
+  z-index: -999;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg in oklab,
+    var(--color-glow) 0%,
+    var(--color-glow-mid) 26%,
+    color-mix(in oklab, var(--color-glow-mid) 45%, var(--color-page)) 40%,
+    var(--color-page) 58%,
+    var(--color-page) 100%
+  );
+}
+
+.blobA,
+.blobB {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+// Offsets are in vh now that the layer is the full viewport, so the blobs stay
+// where they used to sit against the shorter band.
+.blobA {
+  top: -8vh;
+  left: 4%;
+  width: 38vw;
+  height: 38vw;
+  max-width: 34rem;
+  max-height: 34rem;
+  background: radial-gradient(circle, var(--color-primary) 0%, transparent 68%);
+  opacity: 0.28;
+  animation: driftA 26s ease-in-out infinite;
+}
+
+.blobB {
+  top: 3vh;
+  right: -6%;
+  width: 32vw;
+  height: 32vw;
+  max-width: 28rem;
+  max-height: 28rem;
+  background: radial-gradient(circle, var(--color-glow) 0%, transparent 70%);
+  animation: driftB 32s ease-in-out infinite;
+}
+
+@keyframes driftA {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6vw, 3vh, 0) scale(1.12);
+  }
+}
+
+@keyframes driftB {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.08);
+  }
+  50% {
+    transform: translate3d(-5vw, 4vh, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blobA,
+  .blobB {
+    animation: none;
+  }
+}
+
+.shell {
+  display: flex;
+  overflow-x: clip;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0.75rem 0.75rem 0;
+
+  @include md {
+    padding: 1.25rem 1.5rem 0;
+  }
+
+  @include lg {
+    padding: 3rem 1.5rem 0;
+  }
+}
+
+.sheet {
+  width: 100%;
+  max-width: var(--sheet-width);
+  padding: 5.5rem var(--gutter) 4rem;
+  background: var(--color-sheet);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sheet);
+
+  @include md {
+    padding: 7rem 3rem 5rem;
+    border-radius: 2rem;
+  }
+}

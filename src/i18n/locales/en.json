@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "contact": "Contact",
+    "menu": "Menu",
+    "skipToContent": "Skip to content",
+    "toggleTheme": "Toggle theme",
+    "switchLanguage": "Switch to French",
+    "home": "Home"
+  },
+  "hero": {
+    "availability": "Open to opportunities",
+    "viewProjects": "View projects",
+    "downloadCv": "Download CV",
+    "workingWith": "I work mainly with"
+  },
+  "sections": {
+    "experience": {
+      "title": "My experience"
+    },
+    "projects": {
+      "title": "What I build",
+      "viewProject": "View project",
+      "viewCase": "Read the case study",
+      "liveSite": "Live site",
+      "sourceCode": "Source code"
+    },
+    "skills": {
+      "title": "Technical skills",
+      "languages": "Languages"
+    },
+    "gallery": {
+      "title": "A look at what I build"
+    },
+    "education": {
+      "title": "My education"
+    },
+    "softSkills": {
+      "title": "Soft skills"
+    }
+  },
+  "project": {
+    "backToProjects": "Back to projects",
+    "role": "Role",
+    "year": "Year",
+    "stack": "Stack",
+    "highlights": "Highlights",
+    "overview": "Overview",
+    "notFound": "This project doesn't exist.",
+    "nextProject": "Next project"
+  },
+  "meta": {
+    "present": "Present",
+    "year": "yr",
+    "years": "yrs",
+    "month": "mo",
+    "months": "mos",
+    "tasks": "What I did",
+    "stack": "Stack"
+  },
+  "footer": {
+    "headingStart": "Fancy a chat over a",
+    "headingAccent": "coffee",
+    "headingEnd": "or a good Grand Prix?",
+    "builtWith": "Designed and built by me, in Next.js, TypeScript and SCSS."
+  }
+}

@@ -1,0 +1,75 @@
+:root {
+  color-scheme: light;
+
+  --color-page: #f6e3f8; // behind the sheet, and the foot of the gradient
+  --color-sheet: #fffbff; // the floating page itself
+  --color-card: #ffffff;
+
+  --color-ink: #3a1140;
+  --color-line: #ead4ee;
+
+  --color-primary: #b0198a;
+  --color-primary-hover: #961575;
+  --color-on-primary: #ffffff;
+  --color-primary-soft: #{rgba(#b0198a, 0.14)};
+
+  --color-glow: #fdc9ff;
+  --color-glow-mid: #f7def9;
+
+  --muted: 0.62;
+  --muted-strong: 0.72;
+
+  --radius-pill: 999px;
+  --radius-sm: 7px; // the highlight pill
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --sheet-width: 56rem; // max-w-4xl
+  --prose-width: 42rem; // max-w-2xl, the hero and reading measure
+  --gutter: 1.5rem;
+  --section-gap: 6rem;
+
+  --bezier-jiggle: cubic-bezier(0.55, -0.03, 0.15, 1.41);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 160ms;
+  --duration-base: 270ms;
+
+  --shadow-nav: 0 8px 30px rgb(58 17 64 / 12%);
+  --shadow-nav-lifted: 0 10px 40px rgb(58 17 64 / 18%);
+  --shadow-card: 0 2px 8px rgb(58 17 64 / 6%);
+  --shadow-card-hover: 0 12px 28px rgb(58 17 64 / 12%);
+  --shadow-sheet: 0 20px 60px rgb(58 17 64 / 8%);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-page: #17081a;
+  --color-sheet: #210f26;
+  --color-card: #2a1430;
+
+  --color-ink: #fbeefc;
+  --color-line: #3b1f42;
+
+  --color-primary: #ff7ad4;
+  --color-primary-hover: #ff9ade;
+  --color-on-primary: #2b0b30;
+  --color-primary-soft: #{rgba(#ff7ad4, 0.16)};
+
+  --color-glow: #6d1f6b;
+  --color-glow-mid: #34123a;
+
+  --shadow-nav: 0 8px 30px rgb(0 0 0 / 45%);
+  --shadow-nav-lifted: 0 10px 40px rgb(0 0 0 / 55%);
+  --shadow-card: 0 2px 8px rgb(0 0 0 / 30%);
+  --shadow-card-hover: 0 12px 28px rgb(0 0 0 / 45%);
+  --shadow-sheet: 0 20px 60px rgb(0 0 0 / 40%);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 2rem;
+    --section-gap: 7rem;
+  }
+}

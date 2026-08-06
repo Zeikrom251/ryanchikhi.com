@@ -1,0 +1,65 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-top: var(--section-gap);
+  scroll-margin-top: 6rem;
+
+  @include md {
+    gap: 6rem;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+
+  @include lg {
+    flex-direction: row;
+    gap: 3rem;
+  }
+}
+
+.rowFlip {
+  @include lg {
+    flex-direction: row-reverse;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+
+  p {
+    opacity: var(--muted-strong);
+    font-size: 1.0625rem;
+  }
+}
+
+.title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+}
+
+// The photo bleeds past the sheet on wide screens, the way the reference lets
+// its pictures escape the reading column.
+.aside {
+  display: none;
+
+  @include lg {
+    display: block;
+    flex-shrink: 0;
+    margin-right: -5rem;
+
+    .rowFlip & {
+      margin-right: 0;
+      margin-left: -5rem;
+    }
+  }
+}

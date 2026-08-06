@@ -1,0 +1,41 @@
+.place {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  margin-top: var(--section-gap);
+
+  @include lg {
+    flex-direction: row;
+    gap: 3rem;
+  }
+}
+
+.aside {
+  display: none;
+
+  @include lg {
+    display: block;
+    flex-shrink: 0;
+    margin-left: -5rem;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+
+  p {
+    opacity: var(--muted-strong);
+    font-size: 1.0625rem;
+  }
+}
+
+.title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+}

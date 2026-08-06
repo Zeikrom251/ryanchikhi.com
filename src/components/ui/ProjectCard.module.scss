@@ -1,0 +1,173 @@
+.card {
+  @include card;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  height: 100%;
+  isolation: isolate;
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+
+  &:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-5px);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  @include md {
+    flex-direction: column;
+  }
+}
+
+.wide {
+  @include md {
+    flex-direction: row;
+
+    .banner {
+      width: 34%;
+      height: auto;
+      min-height: 11rem;
+    }
+
+    .body {
+      padding: 1.5rem;
+    }
+  }
+}
+
+.sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    22rem circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+    var(--color-primary-soft),
+    transparent 60%
+  );
+  transition: opacity var(--duration-base) var(--ease-out);
+
+  .card:hover & {
+    opacity: 1;
+  }
+}
+
+.banner {
+  @include flex-center;
+  position: relative;
+  flex-shrink: 0;
+  width: 30%;
+  min-width: 5.5rem;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
+
+  @include md {
+    width: 100%;
+    height: 8.5rem;
+  }
+}
+
+.bannerLogo {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 14px;
+  object-fit: contain;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 18%);
+
+  @include md {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 18px;
+  }
+}
+
+.bannerMark {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  opacity: 0.9;
+
+  @include md {
+    font-size: 2.75rem;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.mark {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 5px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.name {
+  @include truncate;
+  flex: 1;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  font-size: 0.9375rem;
+}
+
+.type {
+  @include truncate;
+  max-width: 50%;
+  opacity: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.headline {
+  font-size: 1.0625rem;
+  line-height: 1.3;
+}
+
+.info {
+  opacity: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  svg {
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  .card:hover & svg {
+    transform: translateX(3px);
+  }
+}

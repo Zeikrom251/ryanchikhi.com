@@ -1,0 +1,30 @@
+.highlight {
+  display: inline-block;
+  margin: 0 0.3rem;
+  padding: 0.28rem 0.6rem 0.34rem;
+  border-radius: var(--radius-sm);
+
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+
+  background: linear-gradient(92deg, var(--color-primary) 50%, var(--color-primary-hover) 100%);
+  color: var(--color-on-primary);
+
+  transform-origin: center;
+  will-change: transform;
+}
+
+.soft {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .highlight {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

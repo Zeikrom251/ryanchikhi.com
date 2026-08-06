@@ -1,0 +1,75 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: var(--section-gap);
+  scroll-margin-top: 6rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+
+  @include md {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+// A wide shot takes two of the three columns, so the grid does not read as a
+// flat contact sheet. On mobile there are only two columns, so it goes full width.
+.wide {
+  grid-column: span 2;
+
+  // Twice the width at 4/3 would tower over its neighbours, so widen the frame.
+  .tile {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+.tile {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+  transition:
+    box-shadow var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+
+  &:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-4px);
+  }
+
+  &:hover .image {
+    transform: scale(1.04);
+  }
+}
+
+.image {
+  object-fit: cover;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+// Shown until a real screenshot is dropped into `public/gallery/`.
+.placeholder {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(70% 70% at 30% 20%, var(--color-glow) 0%, transparent 70%),
+    linear-gradient(140deg, var(--color-primary) 0%, var(--color-glow-mid) 100%);
+  opacity: 0.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .image {
+    transition: none;
+  }
+}

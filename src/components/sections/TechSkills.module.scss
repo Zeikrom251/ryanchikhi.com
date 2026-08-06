@@ -1,0 +1,156 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: var(--section-gap);
+  scroll-margin-top: 6rem;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  @include lg {
+    flex-direction: row;
+  }
+}
+
+.cardWrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.card {
+  @include card;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  text-align: left;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-4px);
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  @include lg {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+    text-align: center;
+    padding: 1.25rem 1rem;
+  }
+}
+
+.cardActive {
+  border-color: var(--color-primary);
+
+  @include lg {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+}
+
+.icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.cardTitle {
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.cardType {
+  font-size: 0.8125rem;
+  opacity: var(--muted);
+}
+
+// The panel is reserved space on wide screens so opening and closing a card
+// does not shove the rest of the page up and down.
+.detailSlot {
+  display: none;
+
+  @include lg {
+    display: block;
+    height: 0;
+    transition: height var(--duration-base) var(--ease-out);
+
+    &[data-open='true'] {
+      height: 20rem;
+    }
+  }
+}
+
+.detail {
+  @include card;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: 20rem;
+  padding: 2rem;
+  margin-top: 0.5rem;
+}
+
+.detailIcon {
+  width: 2.75rem;
+  height: 2.75rem;
+  object-fit: contain;
+}
+
+.detailHeadline {
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  max-width: 36rem;
+}
+
+.detailBody {
+  opacity: var(--muted-strong);
+  max-width: 44rem;
+}
+
+.detailPoints {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: auto;
+
+  li {
+    position: relative;
+    padding-left: 1.25rem;
+    font-size: 0.9375rem;
+    opacity: var(--muted-strong);
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.65rem;
+      width: 0.6rem;
+      height: 1px;
+      background: var(--color-primary);
+    }
+  }
+}

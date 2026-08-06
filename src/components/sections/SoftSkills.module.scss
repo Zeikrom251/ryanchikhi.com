@@ -1,0 +1,41 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: var(--section-gap);
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+.trait {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  &::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--color-primary);
+    flex-shrink: 0;
+  }
+}
+
+.body {
+  opacity: var(--muted-strong);
+  line-height: 1.65;
+}
