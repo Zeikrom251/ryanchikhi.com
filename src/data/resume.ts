@@ -29,9 +29,10 @@ export const resume: Resume = {
         ],
       },
       picture: {
+        src: '/pic1.jpg',
         caption: {
-          fr: 'Quelque part entre deux refactos, un café à la main.',
-          en: 'Somewhere between two refactors, coffee in hand.',
+          fr: 'Quelque part entre deux refactos, en train de manœuvrer un bateau.',
+          en: 'Somewhere between two refactors, handling a boat.',
         },
       },
     },
@@ -51,6 +52,10 @@ export const resume: Resume = {
         ],
       },
       picture: {
+        src: '/pic2.png',
+        // The source is 1872x969. Cropping a dashboard to 4/3 cut off the
+        // sidebar and forced the browser to upscale it.
+        aspect: '1872 / 969',
         caption: {
           fr: "Le tableau de bord d'Undercut, un dimanche de Grand Prix.",
           en: "Undercut's dashboard on a race Sunday.",
@@ -365,6 +370,7 @@ export const resume: Resume = {
       slug: 'undercut',
       name: 'Undercut',
       logo: '/logos/undercut.svg',
+      cover: '/undercut_twittercard_normal.webp',
       kind: { fr: 'Projet personnel', en: 'Side project' },
       accent: 'linear-gradient(140deg, #0f5c36 0%, #1e8a52 55%, #4dc98a 100%)',
       year: '2025',
@@ -422,49 +428,6 @@ export const resume: Resume = {
     },
   ],
 
-  // Images only, no copy. Drop a file in `public/gallery/`, set `src`, and write
-  // an `alt` that describes what is on screen: it is the only thing a screen
-  // reader gets. An entry without `src` renders an empty placeholder tile.
-  gallery: [
-    {
-      id: 'undercut-dashboard',
-      wide: true,
-      alt: {
-        fr: "Le tableau de bord d'Undercut un dimanche de Grand Prix.",
-        en: "Undercut's dashboard on a race Sunday.",
-      },
-    },
-    {
-      id: 'undercut-standings',
-      alt: {
-        fr: 'Le classement Undercut en fin de saison.',
-        en: 'The Undercut end-of-season standings.',
-      },
-    },
-    {
-      id: 'undercut-predictions',
-      alt: {
-        fr: 'La grille de pronostics avant le départ.',
-        en: 'The predictions grid before lights out.',
-      },
-    },
-    {
-      id: 'undercut-bot',
-      alt: {
-        fr: 'Le bot Discord Undercut dans une conversation.',
-        en: 'The Undercut Discord bot in a conversation.',
-      },
-    },
-    {
-      id: 'portfolio',
-      wide: true,
-      alt: {
-        fr: 'La page d’accueil de ce portfolio.',
-        en: 'The home page of this portfolio.',
-      },
-    },
-  ],
-
   place: {
     highlight: { fr: 'Bonjour de Paris', en: 'Hello from Paris' },
     body: {
@@ -478,6 +441,10 @@ export const resume: Resume = {
       ],
     },
     picture: {
+      src: '/pic3.jpg',
+      // Portrait source: the default 4/3 landscape frame cropped the top off
+      // the tower.
+      aspect: '3756 / 5008',
       caption: {
         fr: 'Paris, un dimanche matin, avant que la ville se réveille.',
         en: 'Paris on a Sunday morning, before the city wakes up.',

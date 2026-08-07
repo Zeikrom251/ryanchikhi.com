@@ -13,7 +13,7 @@
 .frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: var(--picture-aspect, 4 / 3);
   border-radius: var(--radius-sm);
   overflow: hidden;
   background: var(--color-primary-soft);

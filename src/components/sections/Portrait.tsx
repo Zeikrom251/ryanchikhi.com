@@ -53,7 +53,7 @@ export default function Portrait() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ type: 'spring', duration: 0.9, bounce: 0.25, delay: 0.15 }}
           >
-            <Image src={src} alt={resume.name} width={420} height={460} priority />
+            <Image src={src} alt={resume.name} width={520} height={570} priority />
           </motion.div>
         </motion.div>
       ) : (

@@ -11,6 +11,7 @@ interface PictureProps {
   width?: number
   rotate?: number
   invert?: boolean
+  aspect?: string
 }
 
 export default function Picture({
@@ -19,6 +20,7 @@ export default function Picture({
   width = 18,
   rotate = 3,
   invert = false,
+  aspect,
 }: PictureProps) {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', '65vh end'] })
@@ -35,9 +37,17 @@ export default function Picture({
       className={styles.picture}
       style={{ width: `${width}rem`, rotate: tilt, translateX: x }}
     >
-      <div className={styles.frame}>
+      <div
+        className={styles.frame}
+        style={aspect ? ({ '--picture-aspect': aspect } as React.CSSProperties) : undefined}
+      >
         {src ? (
-          <Image src={src} alt="" fill sizes="(max-width: 1024px) 60vw, 360px" />
+          // The frame is `width` minus the 1rem padding on each side. Both
+          // callers hide the figure below `lg`, so that is its only rendered
+          // size — a vw-based hint here just made Next serve the wrong variant.
+          // These render at ~320px, so the extra quality costs very little and
+          // keeps the fine text in the UI screenshot from smearing.
+          <Image src={src} alt="" fill sizes={`${width * 16 - 32}px`} quality={90} />
         ) : (
           <span className={styles.placeholder} aria-hidden="true" />
         )}

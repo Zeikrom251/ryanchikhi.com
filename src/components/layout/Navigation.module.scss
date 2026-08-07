@@ -111,6 +111,8 @@
 .brand {
   display: flex;
   align-items: center;
+  // Stretch so the home link fills the pill's height as a touch target.
+  align-self: stretch;
   gap: 0.7rem;
   padding-inline: 0.3rem 0.85rem;
 }

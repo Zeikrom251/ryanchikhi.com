@@ -28,29 +28,28 @@ export interface TechSkill {
   }
 }
 
+// `aspect` is a CSS aspect-ratio. It defaults to 4/3 in the Picture component;
+// set it to the source's own ratio for anything that must not be cropped, such
+// as a UI screenshot.
+export interface Snapshot {
+  src?: string
+  caption: Localized
+  aspect?: string
+}
+
 export interface AboutBlock {
   id: string
   highlight: Localized
   rest: Localized
   body: LocalizedList
-  picture?: { src?: string; caption: Localized }
+  picture?: Snapshot
   flip?: boolean
-}
-
-export interface GalleryShot {
-  id: string
-  /** Drop the file in `public/gallery/` and point here. Empty renders a placeholder tile. */
-  src?: string
-  /** Describes the image for screen readers; never drawn on the page. */
-  alt: Localized
-  /** Spans two columns instead of one, to break up the grid rhythm. */
-  wide?: boolean
 }
 
 export interface Location {
   highlight: Localized
   body: LocalizedList
-  picture?: { src?: string; caption: Localized }
+  picture?: Snapshot
 }
 
 export interface LanguageSkill {
@@ -90,7 +89,10 @@ export interface Project {
   /** Square mark shown beside the name on the card. */
   logo?: string
   kind: Localized
+  /** Wide image filling the card's banner panel on the home page. */
   banner?: string
+  /** Header artwork for the project page only; it does not touch the card. */
+  cover?: string
   accent: string
   tagline: Localized
   summary: Localized
@@ -133,7 +135,6 @@ export interface Resume {
   traits: Trait[]
   techSkills: TechSkill[]
   skills: SkillGroup[]
-  gallery: GalleryShot[]
   place: Location
   languages: LanguageSkill[]
   experiences: Experience[]

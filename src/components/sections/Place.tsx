@@ -11,7 +11,13 @@ export default function Place({ locale }: { locale: Locale }) {
     <section className={styles.place}>
       {picture && (
         <div className={styles.aside}>
-          <Picture src={picture.src} caption={picture.caption[locale]} width={20} rotate={3} />
+          <Picture
+            src={picture.src}
+            caption={picture.caption[locale]}
+            width={20}
+            rotate={3}
+            aspect={picture.aspect}
+          />
         </div>
       )}
 

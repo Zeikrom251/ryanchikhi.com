@@ -1,11 +1,12 @@
 .back {
   display: inline-flex;
   align-items: center;
+  min-height: 2.75rem;
   gap: 0.5rem;
   font-size: 0.9375rem;
   font-weight: 600;
   opacity: var(--muted);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   transition: opacity var(--duration-fast) var(--ease-out);
 
   svg {
@@ -23,38 +24,76 @@
 }
 
 .head {
+  margin-bottom: 1.75rem;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  // The social card is 800x418. Matching it means no crop at any width.
+  aspect-ratio: 800 / 418;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-line);
+  background: var(--color-card);
+}
+
+.bannerImage {
+  object-fit: cover;
+}
+
+.identity {
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  padding: 2rem 1.5rem;
-  border-radius: var(--radius-lg);
-  color: #fff;
-  margin-bottom: 1.75rem;
+}
+
+// With a banner the mark rides over its lower edge, the way an avatar sits on a
+// cover image, and the name drops below so it stays on the sheet rather than on
+// the artwork.
+.identityOverlap {
+  position: relative;
+  z-index: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: -2rem;
+  padding-left: 1.25rem;
 
   @include md {
-    padding: 2.5rem 2.5rem;
+    margin-top: -2.5rem;
+    padding-left: 2rem;
   }
 }
 
 .mark {
   @include flex-center;
   flex-shrink: 0;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: var(--radius-md);
-  background: rgb(255 255 255 / 20%);
+  width: 4rem;
+  height: 4rem;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  // The logo ships its own rounded background, so this is only the ring that
+  // separates it from the banner behind it.
+  border: 3px solid var(--color-sheet);
+  box-shadow: var(--shadow-card-hover);
+  color: #fff;
   font-size: 1.75rem;
   font-weight: 700;
+
+  @include md {
+    width: 5rem;
+    height: 5rem;
+  }
 }
 
 .kind {
   font-size: 0.875rem;
   font-weight: 600;
-  opacity: 0.85;
+  opacity: var(--muted);
 }
 
 .title {
-  color: #fff;
   font-weight: 600;
 }
 

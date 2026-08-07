@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation'
 import About from '@/components/sections/About'
 import Education from '@/components/sections/Education'
 import Experience from '@/components/sections/Experience'
-import Gallery from '@/components/sections/Gallery'
 import Hero from '@/components/sections/Hero'
 import Place from '@/components/sections/Place'
 import Projects from '@/components/sections/Projects'
@@ -23,7 +22,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Hero {...props} />
       <Projects {...props} />
       <TechSkills {...props} />
-      <Gallery {...props} />
       <About locale={locale as Locale} />
       <Place locale={locale as Locale} />
       <Education {...props} />

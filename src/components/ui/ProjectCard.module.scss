@@ -2,7 +2,9 @@
   @include card;
   position: relative;
   display: flex;
-  flex-direction: row;
+  // Stacked on phones: a 30%-wide banner strip left the copy in a ~180px
+  // column, which ragged the body text and truncated the project name.
+  flex-direction: column;
   overflow: hidden;
   height: 100%;
   isolation: isolate;
@@ -19,10 +21,6 @@
 
   &:active {
     transform: scale(0.98);
-  }
-
-  @include md {
-    flex-direction: column;
   }
 }
 
@@ -64,8 +62,8 @@
   @include flex-center;
   position: relative;
   flex-shrink: 0;
-  width: 30%;
-  min-width: 5.5rem;
+  width: 100%;
+  height: 7rem;
   overflow: hidden;
 
   img {
@@ -73,7 +71,6 @@
   }
 
   @include md {
-    width: 100%;
     height: 8.5rem;
   }
 }

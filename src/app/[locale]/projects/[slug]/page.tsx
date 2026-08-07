@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Button from '@/components/ui/Button'
@@ -53,11 +54,40 @@ export default async function ProjectPage({ params }: { params: Params }) {
         {dict.project.backToProjects}
       </Link>
 
-      <header className={styles.head} style={{ background: project.accent }}>
-        <span className={styles.mark}>{project.name.charAt(0)}</span>
-        <div>
-          <p className={styles.kind}>{project.kind[locale]}</p>
-          <h1 className={styles.title}>{project.name}</h1>
+      <header className={styles.head}>
+        {project.cover && (
+          <div className={styles.banner}>
+            <Image
+              src={project.cover}
+              alt=""
+              fill
+              sizes="(max-width: 899px) 100vw, 800px"
+              className={styles.bannerImage}
+              priority
+            />
+          </div>
+        )}
+
+        <div className={`${styles.identity} ${project.cover ? styles.identityOverlap : ''}`}>
+          {project.logo ? (
+            <Image
+              src={project.logo}
+              alt=""
+              width={150}
+              height={150}
+              className={styles.mark}
+              priority
+            />
+          ) : (
+            <span className={styles.mark} style={{ background: project.accent }} aria-hidden="true">
+              {project.name.charAt(0)}
+            </span>
+          )}
+
+          <div>
+            <p className={styles.kind}>{project.kind[locale]}</p>
+            <h1 className={styles.title}>{project.name}</h1>
+          </div>
         </div>
       </header>
 

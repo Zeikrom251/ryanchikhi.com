@@ -1,9 +1,29 @@
 .control {
   @include flex-center;
-  width: 2rem;
-  height: 2rem;
+  position: relative;
+  width: 2.375rem;
+  height: 2.375rem;
   border-radius: var(--radius-pill);
   opacity: var(--muted);
+
+  @include md {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  // The pill is only 43px tall inside its padding, so the touch area is grown
+  // vertically with a pseudo-element rather than by resizing the visible button.
+  // Width is left alone: the two controls sit side by side, and overlapping
+  // pseudo-elements would just steal taps from each other.
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2.75rem;
+    transform: translateY(-50%);
+  }
   transition:
     background-color var(--duration-fast) var(--ease-out),
     opacity var(--duration-fast) var(--ease-out),

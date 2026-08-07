@@ -14,11 +14,11 @@
 }
 
 .wrapCutout {
-  height: 17rem;
+  height: 20.5rem;
   align-items: flex-end;
 
   @include md {
-    height: 20rem;
+    height: 24rem;
   }
 }
 
@@ -26,8 +26,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 20rem;
-  height: 16rem;
+  width: 24rem;
+  height: 19rem;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: radial-gradient(circle, var(--color-primary) 0%, transparent 62%);
@@ -42,17 +42,23 @@
   transform: translateX(-50%);
 }
 
+// Mark positions are percentages of this box, so widening it past the wrap on
+// phones pushes the whole ring outward and keeps the marks clear of the figure.
 .orbit {
   position: absolute;
-  inset: 0;
+  inset: 0 -1.75rem;
   pointer-events: none;
+
+  @include md {
+    inset: 0;
+  }
 }
 
 .mark {
   position: absolute;
   @include flex-center;
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-line);
   background: var(--color-card);
@@ -61,9 +67,19 @@
   animation-delay: var(--float-delay, 0s);
 
   img {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1.35rem;
+    height: 1.35rem;
     object-fit: contain;
+  }
+
+  @include md {
+    width: 3rem;
+    height: 3rem;
+
+    img {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
   }
 }
 
@@ -80,13 +96,23 @@
 }
 
 .markSmall {
-  width: 2.375rem;
-  height: 2.375rem;
+  width: 2rem;
+  height: 2rem;
   opacity: 0.75;
 
   img {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+
+  @include md {
+    width: 2.375rem;
+    height: 2.375rem;
+
+    img {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
   }
 }
 
@@ -135,16 +161,16 @@
 
 .stage {
   position: relative;
-  width: 12rem;
-  height: 17rem;
+  width: 14.5rem;
+  height: 20.5rem;
   // Stadium clip, not a rectangle: the figure has to fade out through a curve
   // at the base, and the transparent top lets the head read against the sheet.
   border-radius: var(--radius-pill);
   overflow: hidden;
 
   @include md {
-    width: 13.5rem;
-    height: 20rem;
+    width: 16.25rem;
+    height: 24rem;
   }
 }
 
@@ -169,15 +195,10 @@
   bottom: 0;
   left: -9%;
   width: 118%;
-  transition: bottom var(--duration-base) var(--ease-out);
 
   img {
     width: 100%;
     height: auto;
-  }
-
-  .wrap:hover & {
-    bottom: 0.75rem;
   }
 }
 

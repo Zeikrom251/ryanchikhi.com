@@ -26,6 +26,7 @@ export default function About({ locale }: { locale: Locale }) {
                 width={22}
                 rotate={block.flip ? -3 : 3}
                 invert={block.flip}
+                aspect={block.picture.aspect}
               />
             </div>
           )}
