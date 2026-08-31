@@ -1,0 +1,193 @@
+.back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  opacity: var(--muted);
+  margin-bottom: 1.5rem;
+  transition: opacity var(--duration-fast) var(--ease-out);
+
+  svg {
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  &:hover {
+    color: var(--color-primary);
+    opacity: 1;
+
+    svg {
+      transform: translateX(-3px);
+    }
+  }
+}
+
+.head {
+  margin-bottom: 1.75rem;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  // The social card is 800x418. Matching it means no crop at any width.
+  aspect-ratio: 800 / 418;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-line);
+  background: var(--color-card);
+}
+
+.bannerImage {
+  object-fit: cover;
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+// With a banner the mark rides over its lower edge, the way an avatar sits on a
+// cover image, and the name drops below so it stays on the sheet rather than on
+// the artwork.
+.identityOverlap {
+  position: relative;
+  z-index: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: -2rem;
+  padding-left: 1.25rem;
+
+  @include md {
+    margin-top: -2.5rem;
+    padding-left: 2rem;
+  }
+}
+
+.mark {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 4rem;
+  height: 4rem;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  // The logo ships its own rounded background, so this is only the ring that
+  // separates it from the banner behind it.
+  border: 3px solid var(--color-sheet);
+  box-shadow: var(--shadow-card-hover);
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: 700;
+
+  @include md {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
+.kind {
+  font-size: 0.875rem;
+  font-weight: 600;
+  opacity: var(--muted);
+}
+
+.title {
+  font-weight: 600;
+}
+
+.tagline {
+  font-size: clamp(1.25rem, 3vw, 1.625rem);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  max-width: 34rem;
+  margin-bottom: 2rem;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 2.5rem;
+  padding-block: 1.25rem;
+  border-block: 1px solid var(--color-line);
+  margin-bottom: 2rem;
+
+  dt {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    opacity: var(--muted);
+    margin-bottom: 0.25rem;
+  }
+
+  dd {
+    font-size: 0.9375rem;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+}
+
+.block {
+  margin-bottom: 3rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.blockTitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+
+.prose {
+  display: grid;
+  gap: 1rem;
+
+  p {
+    opacity: var(--muted-strong);
+  }
+}
+
+.highlights {
+  display: grid;
+  gap: 0.625rem;
+
+  li {
+    position: relative;
+    padding-left: 1.5rem;
+    opacity: var(--muted-strong);
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.7rem;
+      width: 0.75rem;
+      height: 1px;
+      background: var(--color-primary);
+    }
+  }
+}
+
+.techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+
+  li {
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+}

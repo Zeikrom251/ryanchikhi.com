@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "projects": "Projets",
+    "contact": "Contact",
+    "menu": "Menu",
+    "skipToContent": "Aller au contenu",
+    "toggleTheme": "Changer de thème",
+    "switchLanguage": "Passer en anglais",
+    "home": "Accueil"
+  },
+  "hero": {
+    "availability": "Ouvert aux opportunités",
+    "viewProjects": "Voir les projets",
+    "downloadCv": "Télécharger le CV",
+    "workingWith": "Je travaille principalement avec"
+  },
+  "sections": {
+    "experience": {
+      "title": "Mon expérience"
+    },
+    "projects": {
+      "title": "Ce que je construis",
+      "viewProject": "Voir le projet",
+      "viewCase": "Lire l'étude de cas",
+      "liveSite": "Site en ligne",
+      "sourceCode": "Code source"
+    },
+    "skills": {
+      "title": "Compétences techniques",
+      "languages": "Langues"
+    },
+    "education": {
+      "title": "Ma formation"
+    },
+    "softSkills": {
+      "title": "Soft skills"
+    }
+  },
+  "project": {
+    "backToProjects": "Retour aux projets",
+    "role": "Rôle",
+    "year": "Année",
+    "stack": "Stack",
+    "highlights": "Points clés",
+    "overview": "Aperçu",
+    "notFound": "Ce projet n'existe pas.",
+    "nextProject": "Projet suivant"
+  },
+  "meta": {
+    "present": "Aujourd'hui",
+    "year": "an",
+    "years": "ans",
+    "month": "mois",
+    "months": "mois",
+    "tasks": "Missions",
+    "stack": "Stack"
+  },
+  "footer": {
+    "headingStart": "Envie d'échanger autour d'un",
+    "headingAccent": "café",
+    "headingEnd": "ou d’un bon Grand Prix ?",
+    "builtWith": "Site conçu et développé par mes soins, en Next.js, TypeScript et SCSS."
+  }
+}

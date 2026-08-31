@@ -1,0 +1,31 @@
+// Sits directly under the hero with no heading, and breaks out past the sheet
+// so the cards read as the first real thing on the page.
+.projects {
+  width: 100%;
+  margin-top: 4rem;
+  scroll-margin-top: 6rem;
+
+  @include lg {
+    width: 118%;
+    max-width: calc(100vw - 3rem);
+    margin-inline: -9%;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  > *:only-child {
+    grid-column: 1 / -1;
+  }
+}
+
+.item {
+  min-width: 0;
+}

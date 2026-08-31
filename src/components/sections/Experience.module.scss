@@ -1,0 +1,84 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-top: var(--section-gap);
+  scroll-margin-top: 6rem;
+}
+
+.list {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.item {
+  display: flex;
+  gap: 1rem;
+}
+
+.body {
+  min-width: 0;
+}
+
+.company {
+  font-weight: 600;
+}
+
+.plain {
+  font-weight: 400;
+  opacity: var(--muted);
+}
+
+.dates {
+  opacity: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.dot {
+  margin-inline: 0.4rem;
+}
+
+.summary {
+  margin-top: 0.75rem;
+  opacity: var(--muted-strong);
+}
+
+.tasks {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+
+  li {
+    position: relative;
+    padding-left: 1.125rem;
+    opacity: var(--muted-strong);
+    font-size: 0.9375rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.65rem;
+      width: 0.5rem;
+      height: 1px;
+      background: var(--color-primary);
+    }
+  }
+}
+
+.techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 1rem;
+
+  li {
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+}

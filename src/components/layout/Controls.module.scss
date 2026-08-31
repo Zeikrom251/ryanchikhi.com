@@ -1,0 +1,70 @@
+.control {
+  @include flex-center;
+  position: relative;
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: var(--radius-pill);
+  opacity: var(--muted);
+
+  @include md {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  // The pill is only 43px tall inside its padding, so the touch area is grown
+  // vertically with a pseudo-element rather than by resizing the visible button.
+  // Width is left alone: the two controls sit side by side, and overlapping
+  // pseudo-elements would just steal taps from each other.
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2.75rem;
+    transform: translateY(-50%);
+  }
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.94);
+  }
+}
+
+.sun {
+  display: none;
+}
+
+.moon {
+  display: block;
+}
+
+:global([data-theme='dark']) {
+  .sun {
+    display: block;
+  }
+
+  .moon {
+    display: none;
+  }
+}
+
+.localeLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.srOnly {
+  @include visually-hidden;
+}

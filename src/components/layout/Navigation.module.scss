@@ -1,0 +1,216 @@
+.wrap {
+  @include flex-center;
+  width: 100%;
+}
+
+.skip {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 100;
+  transform: translate(-50%, -120%);
+  padding: 0.6rem 1.2rem;
+  background: var(--color-ink);
+  color: var(--color-sheet);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+
+  &:focus-visible {
+    transform: translate(-50%, 0);
+  }
+}
+
+.pill {
+  position: fixed;
+  top: 0.5rem;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem;
+  height: 3.4rem;
+
+  background: var(--color-card);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-nav);
+
+  transition:
+    top var(--duration-base) var(--bezier-jiggle),
+    height var(--duration-base) var(--bezier-jiggle),
+    padding var(--duration-base) var(--bezier-jiggle),
+    box-shadow var(--duration-base) var(--bezier-jiggle);
+
+  @include md {
+    gap: 0.4rem;
+    top: 1rem;
+    height: 3.75rem;
+    padding: 0.45rem;
+  }
+
+  @include lg {
+    top: 1.5rem;
+  }
+}
+
+.lifted {
+  box-shadow: var(--shadow-nav-lifted);
+
+  @include md {
+    height: 3.25rem;
+  }
+
+  @include lg {
+    top: 0.75rem;
+  }
+}
+
+// Reading progress, drawn as a ring around the avatar. Anchoring it to the
+// brand mark keeps it legible at any width, which the old bottom bar was not:
+// the pill resizes on scroll and across breakpoints.
+.avatarWrap {
+  position: relative;
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+}
+
+.ring {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  // The reset caps every svg at `max-width: 100%`, which clamped the width to
+  // the avatar while the height kept the extra 8px. The ring came out 4px off
+  // centre; opt this one out.
+  max-width: none;
+  // Start the sweep at 12 o'clock rather than 3.
+  transform: rotate(-90deg);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.ringTrack,
+.ringFill {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.ringTrack {
+  stroke: var(--color-line);
+}
+
+.ringFill {
+  stroke: var(--color-primary);
+  filter: drop-shadow(0 0 4px var(--color-primary));
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  // Stretch so the home link fills the pill's height as a touch target.
+  align-self: stretch;
+  gap: 0.7rem;
+  padding-inline: 0.3rem 0.85rem;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  // The portrait is a cutout, so it needs a fill behind it in the nav.
+  background: linear-gradient(150deg, var(--color-primary), var(--color-glow));
+}
+
+.brandName {
+  display: none;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.15;
+  white-space: nowrap;
+
+  @include lg {
+    display: block;
+  }
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  height: 100%;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  height: 100%;
+  padding-inline: 0.75rem;
+  border-radius: var(--radius-pill);
+
+  font-size: 0.9375rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: var(--muted);
+
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    background: var(--color-primary-soft);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.94);
+  }
+
+  span {
+    display: none;
+
+    @include sm {
+      display: block;
+    }
+  }
+
+  @include md {
+    gap: 0.5rem;
+    padding-inline: 1.15rem;
+  }
+
+  @include lg {
+    padding-inline: 1.4rem;
+  }
+}
+
+.active {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  opacity: 1;
+}
+
+.linkWide {
+  display: none;
+
+  @include sm {
+    display: flex;
+  }
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding-left: 0.65rem;
+  margin-left: 0.35rem;
+  border-left: 1px solid var(--color-line);
+}
