@@ -8,7 +8,8 @@
     display: block;
     position: fixed;
     inset: 0;
-    z-index: -998;
+    // Above the tile wall (the -999 gradient layer), still behind the sheet.
+    z-index: -1;
     overflow: hidden;
     pointer-events: none;
   }
@@ -16,8 +17,8 @@
 
 .mark {
   position: absolute;
-  opacity: 0.16;
-  filter: grayscale(1);
+  opacity: 0.5;
+  filter: grayscale(0.35);
   will-change: transform;
   animation: bob 18s ease-in-out infinite;
 
@@ -28,8 +29,10 @@
   }
 }
 
+// The halo keeps the black logos (Next.js, Prisma, Sass) readable on dark green.
 [data-theme='dark'] .mark {
-  opacity: 0.2;
+  opacity: 0.6;
+  filter: grayscale(0.35) drop-shadow(0 0 5px rgb(238 243 236 / 45%));
 }
 
 @keyframes bob {

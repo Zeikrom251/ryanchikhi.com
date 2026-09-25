@@ -7,6 +7,7 @@ import SmoothScroll from '@/components/layout/SmoothScroll'
 import StructuredData from '@/components/layout/StructuredData'
 import ThemeScript from '@/components/layout/ThemeScript'
 import ThemeSync from '@/components/layout/ThemeSync'
+import Zellige from '@/components/ui/Zellige'
 import styles from './layout.module.scss'
 import { resume } from '@/data/resume'
 import { isLocale, locales, type Locale } from '@/i18n/config'
@@ -14,7 +15,7 @@ import { getDictionary } from '@/i18n/dictionaries'
 import { fontVariables } from '@/lib/fonts'
 import '@/styles/main.scss'
 
-const SITE_URL = 'https://ryanchikhi.dev'
+const SITE_URL = 'https://ryanchikhi.com'
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
@@ -71,6 +72,7 @@ export default async function LocaleLayout({
         <div className={styles.gradient} aria-hidden="true">
           <span className={styles.blobA} />
           <span className={styles.blobB} />
+          <Zellige size={150} className={styles.zellige} />
         </div>
 
         <FloatingIcons />

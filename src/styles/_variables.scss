@@ -1,20 +1,28 @@
 :root {
   color-scheme: light;
 
-  --color-page: #f6e3f8; // behind the sheet, and the foot of the gradient
-  --color-sheet: #fffbff; // the floating page itself
+  // Palette taken from Algerian craft: lime-plaster walls, Tlemcen zellige
+  // green, Kabyle saffron and terracotta.
+  --color-page: #efe6d6; // behind the sheet, and the foot of the gradient
+  --color-sheet: #fffcf5; // the floating page itself
   --color-card: #ffffff;
 
-  --color-ink: #3a1140;
-  --color-line: #ead4ee;
+  --color-ink: #0e2418;
+  --color-line: #e8dcc6;
 
-  --color-primary: #b0198a;
-  --color-primary-hover: #961575;
+  --color-primary: #0e2418;
+  --color-primary-hover: #1d4430;
   --color-on-primary: #ffffff;
-  --color-primary-soft: #{rgba(#b0198a, 0.14)};
+  --color-primary-soft: #{rgba(#0e2418, 0.09)};
 
-  --color-glow: #fdc9ff;
-  --color-glow-mid: #f7def9;
+  --color-glow: #f5dcaa;
+  --color-glow-mid: #f6e8cc;
+
+  --zellige-ink: #0e2418;
+  --zellige-saffron: #d49a2a;
+  --zellige-terracotta: #c0532e;
+  --zellige-ground: #efe6d6;
+  --zellige-opacity: 0.08;
 
   --muted: 0.62;
   --muted-strong: 0.72;
@@ -35,30 +43,36 @@
   --duration-fast: 160ms;
   --duration-base: 270ms;
 
-  --shadow-nav: 0 8px 30px rgb(58 17 64 / 12%);
-  --shadow-nav-lifted: 0 10px 40px rgb(58 17 64 / 18%);
-  --shadow-card: 0 2px 8px rgb(58 17 64 / 6%);
-  --shadow-card-hover: 0 12px 28px rgb(58 17 64 / 12%);
-  --shadow-sheet: 0 20px 60px rgb(58 17 64 / 8%);
+  --shadow-nav: 0 8px 30px rgb(14 36 24 / 12%);
+  --shadow-nav-lifted: 0 10px 40px rgb(14 36 24 / 18%);
+  --shadow-card: 0 2px 8px rgb(14 36 24 / 6%);
+  --shadow-card-hover: 0 12px 28px rgb(14 36 24 / 12%);
+  --shadow-sheet: 0 20px 60px rgb(14 36 24 / 8%);
 }
 
 [data-theme='dark'] {
   color-scheme: dark;
 
-  --color-page: #17081a;
-  --color-sheet: #210f26;
-  --color-card: #2a1430;
+  --color-page: #07140d;
+  --color-sheet: #0e2418;
+  --color-card: #143020;
 
-  --color-ink: #fbeefc;
-  --color-line: #3b1f42;
+  --color-ink: #eef3ec;
+  --color-line: #214532;
 
-  --color-primary: #ff7ad4;
-  --color-primary-hover: #ff9ade;
-  --color-on-primary: #2b0b30;
-  --color-primary-soft: #{rgba(#ff7ad4, 0.16)};
+  --color-primary: #e7b04b;
+  --color-primary-hover: #f0c56e;
+  --color-on-primary: #0e2418;
+  --color-primary-soft: #{rgba(#e7b04b, 0.16)};
 
-  --color-glow: #6d1f6b;
-  --color-glow-mid: #34123a;
+  --color-glow: #1f5238;
+  --color-glow-mid: #0e2418;
+
+  --zellige-ink: #2e6b4a;
+  --zellige-saffron: #e7b04b;
+  --zellige-terracotta: #d9683f;
+  --zellige-ground: #07140d;
+  --zellige-opacity: 0.07;
 
   --shadow-nav: 0 8px 30px rgb(0 0 0 / 45%);
   --shadow-nav-lifted: 0 10px 40px rgb(0 0 0 / 55%);

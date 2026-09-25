@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { motion, useScroll, useSpring } from 'motion/react'
 import LocaleSwitch from './LocaleSwitch'
 import ThemeToggle from './ThemeToggle'
+import { lenis } from './SmoothScroll'
 import styles from './Navigation.module.scss'
 import { resume } from '@/data/resume'
 import type { Locale } from '@/i18n/config'
@@ -34,6 +35,42 @@ export default function Navigation({ locale, dict }: NavigationProps) {
   const home = `/${locale}`
   const onHome = pathname === home
 
+  // Highlights whichever section is currently in view, so Projects/Contact
+  // light up the same way Home does when they're not just link targets.
+  const [activeSection, setActiveSection] = useState<'projects' | 'contact' | null>(null)
+
+  useEffect(() => {
+    if (!onHome) {
+      setActiveSection(null)
+      return
+    }
+    const sections = ['projects', 'contact']
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting)
+        if (visible.length === 0) return
+        setActiveSection(visible[0].target.id as 'projects' | 'contact')
+      },
+      { rootMargin: '-40% 0px -55% 0px' },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [onHome])
+
+  const scrollToHash = (id: 'projects' | 'contact') => (event: React.MouseEvent) => {
+    if (!onHome) return
+    const target = document.getElementById(id)
+    if (!target) return
+    event.preventDefault()
+    setActiveSection(id)
+    if (lenis) lenis.scrollTo(target)
+    else target.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <div className={styles.wrap}>
       <a href="#content" className={styles.skip}>
@@ -47,7 +84,9 @@ export default function Navigation({ locale, dict }: NavigationProps) {
           onClick={(event) => {
             if (!onHome) return
             event.preventDefault()
-            window.scrollTo({ top: 0, behavior: 'smooth' })
+            setActiveSection(null)
+            if (lenis) lenis.scrollTo(0)
+            else window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
         >
           <span className={styles.avatarWrap}>
@@ -75,17 +114,29 @@ export default function Navigation({ locale, dict }: NavigationProps) {
         </Link>
 
         <div className={styles.links}>
-          <Link href={home} className={`${styles.link} ${onHome ? styles.active : ''}`}>
+          <Link
+            href={home}
+            className={`${styles.link} ${onHome && !activeSection ? styles.active : ''}`}
+            onClick={() => setActiveSection(null)}
+          >
             <HomeIcon />
             <span>{dict.nav.home}</span>
           </Link>
 
-          <a href={`${home}#projects`} className={styles.link}>
+          <a
+            href={`${home}#projects`}
+            className={`${styles.link} ${activeSection === 'projects' ? styles.active : ''}`}
+            onClick={scrollToHash('projects')}
+          >
             <GridIcon />
             <span>{dict.nav.projects}</span>
           </a>
 
-          <a href={`${home}#contact`} className={`${styles.link} ${styles.linkWide}`}>
+          <a
+            href={`${home}#contact`}
+            className={`${styles.link} ${styles.linkWide} ${activeSection === 'contact' ? styles.active : ''}`}
+            onClick={scrollToHash('contact')}
+          >
             <MailIcon />
             <span>{dict.nav.contact}</span>
           </a>
