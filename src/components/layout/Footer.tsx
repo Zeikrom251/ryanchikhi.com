@@ -1,4 +1,5 @@
 import styles from './Footer.module.scss'
+import Zellige from '@/components/ui/Zellige'
 import { resume } from '@/data/resume'
 import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/types'
@@ -14,6 +15,7 @@ export default function Footer({ locale, dict }: FooterProps) {
 
   return (
     <footer id="contact" className={styles.footer}>
+      <Zellige size={40} className={styles.frieze} />
       <p className={styles.heading}>
         {dict.footer.headingStart}{' '}
         <span className={styles.accent}>{dict.footer.headingAccent}</span> {dict.footer.headingEnd}

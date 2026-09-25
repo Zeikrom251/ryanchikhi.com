@@ -4,20 +4,35 @@
   width: 100%;
   max-width: var(--sheet-width);
   margin-top: 2rem;
-  padding: 2.5rem 1.75rem 3rem;
+  padding: 3.75rem 1.75rem 3rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   overflow: hidden;
   border-radius: var(--radius-xl);
-  background: #2b0b30;
-  color: #fbeefc;
+  // Always deep green, in both themes, with its own tile colours.
+  --zellige-ink: #2e6b4a;
+  --zellige-saffron: #e7b04b;
+  --zellige-terracotta: #d9683f;
+  --zellige-ground: #0e2418;
+  --footer-accent: #e7b04b;
+  background: #0e2418;
+  color: #eef3ec;
   scroll-margin-top: 6rem;
 
   @include md {
-    padding: 4rem 3.5rem 3rem;
+    padding: 5rem 3.5rem 3rem;
     border-radius: 2rem;
   }
+}
+
+// A band of tiles along the top edge, like the frieze above a zellige dado.
+.frieze {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: 40px;
+  opacity: 0.85;
 }
 
 .heading {
@@ -30,7 +45,7 @@
 }
 
 .accent {
-  color: var(--color-glow);
+  color: var(--footer-accent);
   font-weight: 500;
 }
 
@@ -58,7 +73,7 @@
     transition: color var(--duration-fast) var(--ease-out);
 
     &:hover {
-      color: var(--color-glow);
+      color: var(--footer-accent);
     }
   }
 

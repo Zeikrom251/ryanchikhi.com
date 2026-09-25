@@ -1,16 +1,30 @@
 import type { Resume } from './types'
 
+// This file is the single source of content for the whole site. Almost every
+// text field comes in a { fr: '...', en: '...' } pair — just edit both
+// languages for that field, nothing else needs to change.
+//
+// Sections below, in the order they render on the page:
+//   name / title / intro / contact / portrait / cv     -> Hero
+//   projects                                           -> Projects
+//   techSkills                                         -> TechSkills
+//   about / place                                      -> About
+//   education                                          -> Education
+//   experiences                                        -> Experience
+//   traits                                             -> SoftSkills
+//   skills / languages                                 -> not shown on page, used for SEO (Person JSON-LD)
+
 export const resume: Resume = {
   name: 'Ryan Chikhi',
   location: 'Paris, France',
   title: {
-    fr: 'Développeur fullstack',
-    en: 'Fullstack developer',
+    fr: 'Développeur web full stack',
+    en: 'Full stack web developer',
   },
 
   intro: {
-    fr: "Je construis des applications web de bout en bout, de la modélisation des données jusqu'à l'interface. React, TypeScript et NestJS au quotidien.",
-    en: 'I build web applications end to end, from the data model to the interface. React, TypeScript and NestJS day to day.',
+    fr: "Bientôt 2 ans d'expérience à construire des applications web de bout en bout, de la base de données jusqu'à l'interface. JavaScript et TypeScript, avec React côté client, Node.js et NestJS côté serveur.",
+    en: 'Almost 2 years of building web applications end to end, from the database to the interface. JavaScript and TypeScript, with React on the client and Node.js and NestJS on the server.',
   },
 
   contact: [
@@ -29,8 +43,9 @@ export const resume: Resume = {
     en: '/cv/en/resume_CHIKHI.pdf',
   },
 
-  // Section order below follows the page render order in src/app/[locale]/page.tsx:
-  // Hero -> Projects -> TechSkills -> About -> Place -> Education -> Experience -> SoftSkills.
+  // ---- PROJECTS -----------------------------------------------------------
+  // One entry per project card. Add a new object to this array for a new
+  // project; each one becomes its own page at /projects/<slug>.
   projects: [
     {
       slug: 'undercut',
@@ -39,15 +54,15 @@ export const resume: Resume = {
       cover: '/undercut_twittercard_normal.webp',
       kind: { fr: 'Projet personnel', en: 'Side project' },
       accent: 'linear-gradient(140deg, #0f5c36 0%, #1e8a52 55%, #4dc98a 100%)',
-      year: '2025',
+      year: '2026',
       role: { fr: 'Conception et développement', en: 'Design and development' },
       tagline: {
-        fr: 'Pronostics de Formule 1 entre amis, sur une saison complète.',
-        en: 'Formula 1 predictions between friends, across a full season.',
+        fr: 'Pronostics de sport automobile entre amis, sur une saison complète.',
+        en: 'Motorsport predictions between friends, across a full season.',
       },
       summary: {
-        fr: 'Application fullstack où les fans de F1 déposent leurs pronostics avant chaque Grand Prix, marquent des points automatiquement et se classent sur une saison. Construite from scratch en monorepo, avec une API NestJS, Prisma et un frontend React.',
-        en: 'Fullstack application where F1 fans submit predictions before each Grand Prix, score points automatically and climb a season-long leaderboard. Built from scratch as a monorepo, with a NestJS API, Prisma and a React frontend.',
+        fr: 'Application web full stack où les fans de sport automobile déposent leurs pronostics avant chaque course, marquent des points automatiquement et se mesurent à leurs amis sur un classement saisonnier. Construite from scratch en monorepo Turborepo, avec une API REST NestJS, Prisma, MySQL et un frontend React.',
+        en: 'Full stack web application where motorsport fans submit predictions before every race, score points automatically and compete against friends on a seasonal leaderboard. Built from scratch as a Turborepo monorepo, with a NestJS REST API, Prisma, MySQL and a React frontend.',
       },
       body: {
         fr: [
@@ -66,21 +81,24 @@ export const resume: Resume = {
       highlights: {
         fr: [
           "Monorepo Turborepo : types partagés entre le client, l'API et le bot Discord",
-          'Scoring idempotent déclenché après chaque Grand Prix',
-          "Authentification, système d'amis et classements saisonniers",
-          'Déploiement continu via GitHub Actions sur Vercel et Render',
+          'API REST NestJS avec Prisma comme ORM, sur une base MySQL',
+          "Authentification BetterAuth, système d'amis et classements saisonniers",
+          "Intégration de l'API du calendrier officiel de Formule 1",
+          'Déploiement continu via GitHub Actions, sur Vercel (frontend) et Render (backend)',
         ],
         en: [
           'Turborepo monorepo: types shared across the client, the API and the Discord bot',
-          'Idempotent scoring job triggered after each Grand Prix',
-          'Authentication, friends system and season-long leaderboards',
-          'Continuous deployment through GitHub Actions to Vercel and Render',
+          'NestJS REST API with Prisma as the ORM, on a MySQL database',
+          'BetterAuth authentication, friends system and seasonal leaderboards',
+          'Integration of the official Formula 1 calendar API',
+          'Continuous deployment through GitHub Actions, to Vercel (frontend) and Render (backend)',
         ],
       },
       techs: [
         'TypeScript',
         'React',
         'SCSS',
+        'Tailwind CSS',
         'NestJS',
         'Prisma',
         'MySQL',
@@ -88,12 +106,15 @@ export const resume: Resume = {
         'Turborepo',
         'GitHub Actions',
         'Vercel',
+        'Render',
       ],
       repo: 'https://github.com/Zeikrom251/undercut.click',
       url: 'https://www.undercut.click',
     },
   ],
 
+  // ---- TECH SKILLS ---------------------------------------------------------
+  // The cards under "technical skills". Each one expands to show `detail`.
   techSkills: [
     {
       slug: 'react',
@@ -106,18 +127,18 @@ export const resume: Resume = {
           en: 'Interfaces that stay readable as the project grows',
         },
         body: {
-          fr: "C'est ce que j'utilise tous les jours, chez Tilkal comme sur Undercut. Je m'attache surtout à garder une frontière nette entre l'état, les données et l'affichage, parce que c'est là que les projets deviennent pénibles à maintenir.",
-          en: 'This is what I use every day, at Tilkal and on Undercut. What I care about most is keeping a clean boundary between state, data and rendering, because that is where projects become painful to maintain.',
+          fr: "C'est ce que j'utilise tous les jours, sur Undercut comme pour Les Simracers X. Je m'attache surtout à garder une frontière nette entre l'état, les données et l'affichage, parce que c'est là que les projets deviennent pénibles à maintenir.",
+          en: 'This is what I use every day, on Undercut and for Les Simracers X. What I care about most is keeping a clean boundary between state, data and rendering, because that is where projects become painful to maintain.',
         },
         points: {
           fr: [
-            "Refactorisation d'une vue produit chez Tilkal pour clarifier les responsabilités",
-            "Front-end complet d'Undercut, du design system aux pages de classement",
+            "Front-end complet d'Undercut en React, SCSS et Tailwind CSS",
+            "Site officiel de Les Simracers X, pour la visibilité et l'image de l'association",
             'Ce portfolio, en Next.js App Router et SCSS modules',
           ],
           en: [
-            'Refactored a product view at Tilkal to clarify responsibilities',
-            "Undercut's entire front end, from design system to leaderboard pages",
+            "Undercut's entire front end, in React, SCSS and Tailwind CSS",
+            "Les Simracers X's official website, built for the association's visibility and image",
             'This portfolio, in Next.js App Router and SCSS modules',
           ],
         },
@@ -162,19 +183,19 @@ export const resume: Resume = {
           en: 'APIs whose shape you can guess without reading the code',
         },
         body: {
-          fr: "J'ai travaillé sur une API NestJS/GraphQL chez Tilkal, et j'ai construit celle d'Undercut de zéro : authentification, système d'amis, calcul de points après chaque Grand Prix.",
-          en: 'I worked on a NestJS/GraphQL API at Tilkal, and built the Undercut one from scratch: authentication, friends system, and point scoring after each Grand Prix.',
+          fr: "J'ai construit l'API REST d'Undercut de zéro avec NestJS et Prisma, et des bots Discord en Node.js qui automatisent la gestion des championnats de Les Simracers X.",
+          en: 'I built the Undercut REST API from scratch with NestJS and Prisma, and Node.js Discord bots that automate championship management for Les Simracers X.',
         },
         points: {
           fr: [
-            'API REST complète pour Undercut, avec authentification et rôles',
-            'Job de scoring idempotent : rejouer une course ne double jamais les points',
-            'Contribution à une API GraphQL en production chez Tilkal',
+            'API REST complète pour Undercut, avec authentification BetterAuth',
+            'Bots Discord sur mesure (Discord.js) pour gérer des championnats esport de bout en bout',
+            "Back-office d'administration en Express.js chez Diligence",
           ],
           en: [
-            'Full REST API for Undercut, with authentication and roles',
-            "Idempotent scoring job: replaying a race never doubles anyone's points",
-            'Contributed to a production GraphQL API at Tilkal',
+            'Full REST API for Undercut, with BetterAuth authentication',
+            'Custom Discord bots (Discord.js) that run esports championships end to end',
+            'Admin back office in Express.js at Diligence',
           ],
         },
       },
@@ -182,7 +203,7 @@ export const resume: Resume = {
     {
       slug: 'postgresql',
       icon: '/tech/postgresql.svg',
-      title: 'PostgreSQL & Prisma',
+      title: 'SQL & Prisma',
       type: { fr: 'Modélisation de données', en: 'Data modelling' },
       detail: {
         headline: {
@@ -195,14 +216,14 @@ export const resume: Resume = {
         },
         points: {
           fr: [
-            'Modèle Undercut : utilisateurs, amis, courses, pronostics, classements',
+            'Modèle Undercut sous MySQL : utilisateurs, amis, courses, pronostics, classements',
             'Migrations Prisma versionnées et rejouables',
-            'PostgreSQL en production chez Tilkal',
+            'Maintenance de bases PostgreSQL complexes chez Tilkal',
           ],
           en: [
-            'Undercut model: users, friends, races, predictions, standings',
+            'Undercut model on MySQL: users, friends, races, predictions, standings',
             'Versioned, replayable Prisma migrations',
-            'PostgreSQL in production at Tilkal',
+            'Maintained complex PostgreSQL databases at Tilkal',
           ],
         },
       },
@@ -218,25 +239,28 @@ export const resume: Resume = {
           en: 'Ship without holding your breath',
         },
         body: {
-          fr: "GitLab CI chez Tilkal, GitHub Actions sur mes projets. J'ai contribué à ajouter des scénarios de tests automatisés à une chaîne existante, ce qui m'a appris autant sur les tests que sur la patience.",
-          en: 'GitLab CI at Tilkal, GitHub Actions on my own projects. I helped add automated test scenarios to an existing pipeline, which taught me as much about tests as about patience.',
+          fr: "GitLab CI chez Tilkal, GitHub Actions sur mes projets. Chez Tilkal, j'ai mis en place des pipelines CI/CD et écrit des plans de tests d'intégration, ce qui m'a appris autant sur les tests que sur la patience.",
+          en: 'GitLab CI at Tilkal, GitHub Actions on my own projects. At Tilkal I set up CI/CD pipelines and wrote integration test plans, which taught me as much about tests as about patience.',
         },
         points: {
           fr: [
             'Déploiement continu sur Vercel et Render pour Undercut',
-            'Ajout de scénarios de tests automatisés dans la CI de Tilkal',
-            'Contribution open source sur Leaf-it-to-me',
+            "Pipelines CI/CD GitLab CI et plans de tests d'intégration chez Tilkal",
+            'Jeux de données factices structurés pour accélérer et fiabiliser les recettes',
           ],
           en: [
             'Continuous deployment to Vercel and Render for Undercut',
-            "Added automated test scenarios to Tilkal's CI",
-            'Open-source contribution to Leaf-it-to-me',
+            'GitLab CI pipelines and integration test plans at Tilkal',
+            'Structured mock datasets to speed up and harden acceptance testing',
           ],
         },
       },
     },
   ],
 
+  // ---- ABOUT -----------------------------------------------------------
+  // The two "About" blocks (me / my work). `flip` mirrors the layout so the
+  // picture alternates sides.
   about: [
     {
       id: 'me',
@@ -244,12 +268,14 @@ export const resume: Resume = {
       rest: { fr: 'de moi', en: 'me' },
       body: {
         fr: [
-          "Je m'appelle Ryan Chikhi et j'ai 21 ans. J'ai commencé par un BTS systèmes numériques, où j'ai appris à raisonner en termes de contraintes avant de raisonner en termes de code.",
+          "Je m'appelle Ryan Chikhi et j'ai 22 ans. J'ai commencé par un BTS systèmes numériques, où j'ai appris à raisonner en termes de contraintes avant de raisonner en termes de code.",
           "J'ai enchaîné avec la formation Full Stack Developer de la 3W Academy, puis une alternance chez Tilkal. C'est là que j'ai appris ce qu'on n'apprend pas en cours : lire du code écrit par quelqu'un d'autre, refactoriser sans casser l'existant, et défendre un choix technique en revue.",
+          'En dehors du code, je fais du simracing depuis trois ans (Le Mans Ultimate, Assetto Corsa Competizione) et de la photo depuis sept ans : rue, portraits, paysages.',
         ],
         en: [
-          'My name is Ryan Chikhi and I am 21. I started with a technical diploma in digital systems, where I learned to reason about constraints before reasoning about code.',
+          'My name is Ryan Chikhi and I am 22. I started with a technical diploma in digital systems, where I learned to reason about constraints before reasoning about code.',
           "Then came the Full Stack Developer programme at 3W Academy, followed by an apprenticeship at Tilkal. That is where I learned what a course cannot teach you: reading someone else's code, refactoring without breaking what already worked, and defending a technical decision in review.",
+          'Away from code, I have been sim racing for three years (Le Mans Ultimate, Assetto Corsa Competizione) and taking photos for seven: street, portraits, landscapes.',
         ],
       },
       picture: {
@@ -267,12 +293,14 @@ export const resume: Resume = {
       flip: true,
       body: {
         fr: [
-          "Je développe Undercut, une application de pronostics de Formule 1 née d'un bot Discord utilisé par plus de 30 000 personnes. C'est mon terrain d'essai : monorepo, CI, authentification, ORM.",
-          'Côté technique, je jongle entre React, TypeScript, NestJS et Prisma pour construire des applications que les gens ont envie de garder ouvertes. Quand un choix technique me coûte cher, je le découvre en général sur ce projet en premier.',
+          "Je développe Undercut, une application de pronostics de sport automobile inspirée d'un bot Discord utilisé par plus de 30 000 personnes. C'est mon terrain d'essai : monorepo, CI/CD, authentification, ORM.",
+          "Je suis aussi lead developer de Les Simracers X, une association d'esport : bots Discord qui automatisent les championnats, site officiel, et encadrement de l'équipe de développement.",
+          "Côté technique, je jongle entre React, TypeScript, NestJS et Prisma, et je m'intéresse de près aux outils d'IA appliqués au développement (GitHub Copilot, Claude Code, Mistral Vibe).",
         ],
         en: [
-          'I build Undercut, a Formula 1 predictions app that grew out of a Discord bot used by 30,000+ people. It is my proving ground: monorepo, CI, authentication, ORM.',
-          'On the technical side I move between React, TypeScript, NestJS and Prisma to build applications people actually want to keep open. When a technical decision turns out to be expensive, this is usually where I find out first.',
+          'I build Undercut, a motorsport predictions app inspired by a Discord bot used by 30,000+ people. It is my proving ground: monorepo, CI/CD, authentication, ORM.',
+          'I am also lead developer at Les Simracers X, an esports association: Discord bots that automate its championships, the official website, and leading the development team.',
+          'On the technical side I move between React, TypeScript, NestJS and Prisma, with a strong interest in AI tools applied to development (GitHub Copilot, Claude Code, Mistral Vibe).',
         ],
       },
       picture: {
@@ -288,6 +316,7 @@ export const resume: Resume = {
     },
   ],
 
+  // ---- PLACE (location blurb) ------------------------------------------
   place: {
     highlight: { fr: 'Bonjour de Paris', en: 'Hello from Paris' },
     body: {
@@ -312,77 +341,123 @@ export const resume: Resume = {
     },
   },
 
+  // ---- EDUCATION ---------------------------------------------------------
+  // Listed newest first.
   education: [
     {
       id: '3wa',
       school: '3W Academy',
-      degree: { fr: 'Formation Full Stack Developer', en: 'Full Stack Developer programme' },
+      degree: {
+        fr: 'Formation Développeur Full Stack (FSD)',
+        en: 'Full Stack Developer Program (FSD)',
+      },
       dates: { start: '2025-01-01', end: '2026-01-31' },
       location: 'Paris 14ᵉ',
       logo: '/logos/3wa-mark.svg',
       logoBg: '#1b1b28',
-      accent: 'linear-gradient(135deg, #b0198a, #e0559f)',
+      accent: 'linear-gradient(135deg, #0e2418, #2d5a41)',
     },
     {
       id: 'jules-ferry',
       school: 'Lycée Jules Ferry',
-      degree: { fr: 'BTS Systèmes numériques', en: 'Higher Technician Certificate' },
+      degree: { fr: 'BTS SNIR', en: 'BTS (Higher National Diploma), SNIR' },
       specialty: {
-        fr: 'Option informatique et réseaux',
-        en: 'Digital systems, computing and networks',
+        fr: 'Systèmes numériques, option informatique et réseaux',
+        en: 'Digital Systems, IT and Networks',
       },
       dates: { start: '2022-09-01', end: '2024-06-30' },
       location: 'Versailles',
-      accent: 'linear-gradient(135deg, #7b2fa8, #b06ad4)',
+      accent: 'linear-gradient(135deg, #b7791f, #e8b54a)',
     },
     {
       id: 'fresnel',
       school: 'Lycée Fresnel',
-      degree: { fr: 'Baccalauréat STI2D', en: 'French Baccalaureate, STI2D' },
+      degree: { fr: 'Baccalauréat technologique STI2D', en: 'STI2D Technology Baccalaureate' },
       specialty: {
         fr: "Sciences et technologies de l'industrie et du développement durable",
-        en: 'Science and technology for industry and sustainable development',
+        en: 'Industrial and Sustainable Development Sciences and Technologies',
       },
       dates: { start: '2021-09-01', end: '2022-07-31' },
       location: 'Paris 15ᵉ',
-      accent: 'linear-gradient(135deg, #c2557f, #e8a0b8)',
+      accent: 'linear-gradient(135deg, #a8432a, #d9683f)',
     },
   ],
 
+  // ---- EXPERIENCE ---------------------------------------------------------
+  // Listed newest first. `dates.end: null` would mean "ongoing" (not used
+  // currently, but supported by the type).
   experiences: [
     {
-      id: 'tilkal',
-      company: 'Tilkal',
-      role: { fr: 'Développeur fullstack', en: 'Fullstack developer' },
-      kind: { fr: 'Alternance · 3W Academy', en: 'Apprenticeship · 3W Academy' },
-      dates: { start: '2025-01-06', end: '2026-02-28' },
+      id: 'simracers-x',
+      company: 'Les Simracers X',
+      role: { fr: 'Lead developer full stack', en: 'Lead full stack developer' },
+      kind: { fr: "Association d'esport", en: 'Esports association' },
+      dates: { start: '2024-12-01', end: '2026-09-30' },
       summary: {
-        fr: 'Alternance sur une plateforme de traçabilité produit : développement produit interne et contributions open source, en React/TypeScript côté client et NestJS/GraphQL côté serveur.',
-        en: 'Apprenticeship on a product traceability platform: internal product work and open-source contributions, React/TypeScript on the client and NestJS/GraphQL on the server.',
+        fr: "Lead developer d'une association d'esport de simracing : outils d'automatisation des championnats, site officiel et encadrement de l'équipe de développement.",
+        en: 'Lead developer for a sim racing esports association: championship automation tools, the official website, and leading the development team.',
       },
       tasks: {
         fr: [
-          "Contribution à Leaf-it-to-me, un outil open source de visualisation et d'édition de JSON",
-          "Refactorisation d'une vue produit pour clarifier la séparation des responsabilités et simplifier le parcours utilisateur",
-          'Mise en place de la génération de données factices pour les besoins de test',
-          "Ajout de scénarios de tests automatisés dans la chaîne d'intégration continue",
+          "Conception et développement de bots Discord sur mesure pour l'automatisation et la gestion intégrale des championnats esport",
+          'Création du site web officiel de la structure pour optimiser sa visibilité, son image de marque et son exposition médiatique',
+          "Encadrement technique et management opérationnel de l'équipe de développement et des membres du projet",
         ],
         en: [
-          'Contributed to Leaf-it-to-me, an open-source JSON visualisation and editing tool',
-          'Refactored a product view to clarify separation of concerns and simplify the user journey',
-          'Set up fake data generation to support the test suite',
-          'Added automated test scenarios to the continuous integration pipeline',
+          'Designed and developed custom Discord bots for full automation and management of esports championships',
+          "Built the organization's official website to boost its visibility, brand image and media exposure",
+          'Provided technical leadership and operational management of the development team and project members',
         ],
       },
-      techs: ['React', 'TypeScript', 'NestJS', 'GraphQL', 'PostgreSQL', 'GitLab CI'],
+      techs: [
+        'React',
+        'TypeScript',
+        'NestJS',
+        'MySQL',
+        'Docker',
+        'Gitlab',
+        'GitLab CI',
+        'Github',
+        'Github Actions',
+      ],
+      logo: '/logos/lsx.png',
+      accent: 'linear-gradient(135deg, #0e2418, #2d5a41)',
+    },
+    {
+      id: 'tilkal',
+      company: 'Tilkal',
+      role: { fr: 'Développeur full stack', en: 'Full stack developer' },
+      kind: { fr: 'Alternance · 3W Academy', en: 'Apprenticeship · 3W Academy' },
+      dates: { start: '2025-01-06', end: '2026-02-28' },
+      summary: {
+        fr: 'Alternance sur une plateforme SaaS dédiée à la traçabilité produit : développement et optimisation continue, bases de données PostgreSQL, tests et CI/CD.',
+        en: 'Apprenticeship on a SaaS platform dedicated to product traceability: continuous development and optimisation, PostgreSQL databases, testing and CI/CD.',
+      },
+      tasks: {
+        fr: [
+          "Développement et optimisation continue d'une plateforme SaaS dédiée à la traçabilité produit",
+          'Maintenance de bases de données relationnelles complexes sous PostgreSQL',
+          'Conception de jeux de données factices structurés pour accélérer et fiabiliser les campagnes de recette',
+          "Élaboration et exécution de plans de tests d'intégration pour garantir la robustesse et la qualité des livrables",
+          'Gestion du contrôle de version avec Git/GitLab et mise en place de pipelines CI/CD via GitLab CI',
+        ],
+        en: [
+          'Developed and continuously optimised a SaaS platform dedicated to product traceability',
+          'Maintained complex relational databases on PostgreSQL',
+          'Designed structured mock datasets to speed up acceptance testing and make it more reliable',
+          'Wrote and ran integration test plans to ensure the robustness and quality of deliverables',
+          'Managed version control with Git/GitLab and set up CI/CD pipelines with GitLab CI',
+        ],
+      },
+      techs: ['React', 'TypeScript', 'NestJS', 'GraphQL', 'PostgreSQL', 'Docker', 'GitLab CI'],
       logo: '/logos/tilkal.png',
-      accent: 'linear-gradient(135deg, #b0198a, #e0559f)',
+      accent: 'linear-gradient(135deg, #b7791f, #e8b54a)',
     },
     {
       id: 'diligence',
       company: 'Diligence',
       role: { fr: 'Développeur web', en: 'Web developer' },
-      kind: { fr: 'Stage · BTS 1ʳᵉ année', en: 'Internship · 1st year' },
+      kind: { fr: 'Stage · 1ʳᵉ année de BTS SNIR', en: 'Internship · 1st-year BTS SNIR' },
       dates: { start: '2023-05-09', end: '2023-06-23' },
       summary: {
         fr: "Premier stage en entreprise : gestion de contenu sous WordPress et développement d'un back-office sur mesure avec Express.js.",
@@ -390,21 +465,21 @@ export const resume: Resume = {
       },
       tasks: {
         fr: [
-          'Administration et personnalisation de sites sous WordPress',
-          "Développement d'un back-office en Node.js / Express.js",
+          'Développement et personnalisation de sites web avec le CMS WordPress',
+          "Conception d'un back-office d'administration avec Express.js et Node.js",
         ],
         en: [
-          'Administered and customised WordPress sites',
-          'Built a back office with Node.js and Express.js',
+          'Developed and customised websites with the WordPress CMS',
+          'Built an admin back office with Express.js and Node.js',
         ],
       },
       techs: ['Node.js', 'Express.js', 'WordPress'],
-      accent: 'linear-gradient(135deg, #7b2fa8, #b06ad4)',
+      accent: 'linear-gradient(135deg, #a8432a, #d9683f)',
     },
     {
       id: 'ccas',
       company: 'C.C.A.S',
-      role: { fr: 'Animateur', en: 'Youth camp leader' },
+      role: { fr: 'Animateur', en: 'Camp counselor' },
       kind: { fr: 'Saisonnier', en: 'Seasonal' },
       dates: { start: '2021-10-17', end: '2022-10-15' },
       summary: {
@@ -413,19 +488,20 @@ export const resume: Resume = {
       },
       tasks: {
         fr: [
-          "Encadrement quotidien de groupes d'enfants de 4 à 12 ans",
-          "Conception et animation d'activités sur des séjours de plusieurs semaines",
+          "Encadrement et prise en charge globale de groupes d'enfants de 4 à 12 ans lors de séjours de vacances",
+          "Conception et animation de projets pédagogiques favorisant le travail d'équipe, l'autonomie et la responsabilité",
         ],
         en: [
-          'Day-to-day supervision of groups of children aged 4 to 12',
-          'Designed and ran activities across multi-week stays',
+          'Supervised and took full responsibility for groups of children aged 4 to 12 during holiday camps',
+          'Designed and led educational activities that fostered teamwork, autonomy and responsibility',
         ],
       },
       techs: [],
-      accent: 'linear-gradient(135deg, #c2557f, #e8a0b8)',
+      accent: 'linear-gradient(135deg, #0e2418, #2d5a41)',
     },
   ],
 
+  // ---- SOFT SKILLS (traits) -----------------------------------------------
   traits: [
     {
       id: 'product',
@@ -453,10 +529,10 @@ export const resume: Resume = {
     },
     {
       id: 'communication',
-      title: { fr: 'Expliquer simplement', en: 'Explaining plainly' },
+      title: { fr: 'Expliquer et encadrer', en: 'Explaining and leading' },
       body: {
-        fr: "Un an à encadrer des enfants en colonie m'a appris à expliquer sans jargon et à garder mon calme. C'est étonnamment utile en revue de code.",
-        en: 'A year running youth camps taught me to explain without jargon and stay calm. That turns out to be unexpectedly useful in code review.',
+        fr: "Un an à encadrer des enfants en colonie m'a appris à expliquer sans jargon et à garder mon calme. Ça me sert aujourd'hui pour encadrer l'équipe de développement de Les Simracers X, et en revue de code.",
+        en: 'A year running youth camps taught me to explain without jargon and stay calm. I use that today leading the development team at Les Simracers X, and in code review.',
       },
     },
   ],
@@ -466,27 +542,51 @@ export const resume: Resume = {
     {
       id: 'frontend',
       title: { fr: 'Frontend', en: 'Frontend' },
-      items: ['TypeScript', 'React', 'Next.js', 'JavaScript', 'SCSS', 'Tailwind CSS', 'HTML'],
+      items: [
+        'JavaScript',
+        'TypeScript',
+        'React',
+        'Next.js',
+        'HTML5',
+        'CSS3',
+        'SCSS',
+        'Tailwind CSS',
+      ],
     },
     {
       id: 'backend',
       title: { fr: 'Backend', en: 'Backend' },
-      items: ['Node.js', 'NestJS', 'GraphQL', 'Prisma', 'Discord.js'],
+      items: ['Node.js', 'NestJS', 'Express.js', 'REST API', 'GraphQL', 'Discord.js', 'BetterAuth'],
     },
     {
       id: 'data',
       title: { fr: 'Bases de données', en: 'Databases' },
-      items: ['PostgreSQL', 'MySQL'],
+      items: ['MySQL', 'PostgreSQL', 'SQL', 'Prisma'],
     },
     {
       id: 'tooling',
-      title: { fr: 'Outils & CI', en: 'Tooling & CI' },
-      items: ['Git', 'GitHub Actions', 'GitLab CI', 'Turborepo', 'Vercel'],
+      title: { fr: 'Outils & CI/CD', en: 'Tooling & CI/CD' },
+      items: [
+        'Git',
+        'GitHub',
+        'GitHub Actions',
+        'GitLab',
+        'GitLab CI',
+        'Turborepo',
+        'Vercel',
+        'Render',
+        'Railway',
+      ],
+    },
+    {
+      id: 'ai',
+      title: { fr: "Outils d'IA", en: 'AI tools' },
+      items: ['GitHub Copilot', 'Claude Code', 'Mistral Vibe'],
     },
   ],
 
   languages: [
-    { name: { fr: 'Français', en: 'French' }, level: 'C2' },
+    { name: { fr: 'Français', en: 'French' }, level: 'Native' },
     { name: { fr: 'Anglais', en: 'English' }, level: 'B2' },
     { name: { fr: 'Arabe', en: 'Arabic' }, level: 'B2' },
     { name: { fr: 'Kabyle', en: 'Kabyle' }, level: 'A2' },
