@@ -87,3 +87,13 @@
   line-height: 1.7;
   opacity: 0.55;
 }
+
+.credit {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: color var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    color: var(--footer-accent);
+  }
+}

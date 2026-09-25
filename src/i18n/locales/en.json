@@ -59,6 +59,7 @@
     "headingStart": "Fancy a chat over a",
     "headingAccent": "coffee",
     "headingEnd": "or a good Grand Prix?",
-    "builtWith": "Designed and built by me, in Next.js, TypeScript and SCSS."
+    "builtWith": "Built by me in Next.js, TypeScript and SCSS.",
+    "designBy": "Structure and original design by"
   }
 }

@@ -48,6 +48,26 @@ export default function Footer({ locale, dict }: FooterProps) {
         © {new Date().getFullYear()} {resume.name}
         <br />
         {dict.footer.builtWith}
+        <br />
+        {dict.footer.designBy}{' '}
+        <a
+          href="https://vincelinise.com"
+          target="_blank"
+          rel="noreferrer"
+          className={styles.credit}
+        >
+          Vince Linise
+        </a>{' '}
+        (
+        <a
+          href="https://github.com/ecnivtwelve"
+          target="_blank"
+          rel="noreferrer"
+          className={styles.credit}
+        >
+          @ecnivtwelve
+        </a>
+        ).
       </p>
     </footer>
   )

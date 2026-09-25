@@ -59,6 +59,7 @@
     "headingStart": "Envie d'échanger autour d'un",
     "headingAccent": "café",
     "headingEnd": "ou d’un bon Grand Prix ?",
-    "builtWith": "Site conçu et développé par mes soins, en Next.js, TypeScript et SCSS."
+    "builtWith": "Développé par mes soins en Next.js, TypeScript et SCSS.",
+    "designBy": "Structure et design d'origine par"
   }
 }
