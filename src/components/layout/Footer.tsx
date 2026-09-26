@@ -15,7 +15,7 @@ export default function Footer({ locale, dict }: FooterProps) {
 
   return (
     <footer id="contact" className={styles.footer}>
-      <Zellige size={40} className={styles.frieze} />
+      <Zellige size={96} className={styles.zellige} />
       <p className={styles.heading}>
         {dict.footer.headingStart}{' '}
         <span className={styles.accent}>{dict.footer.headingAccent}</span> {dict.footer.headingEnd}
