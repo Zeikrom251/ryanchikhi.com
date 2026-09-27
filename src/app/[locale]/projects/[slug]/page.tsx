@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, ResolvingMetadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -8,6 +8,7 @@ import styles from './project.module.scss'
 import { getProject, resume } from '@/data/resume'
 import { isLocale, locales, type Locale } from '@/i18n/config'
 import { getDictionary } from '@/i18n/dictionaries'
+import { languageAlternates, SITE_URL } from '@/lib/site'
 
 type Params = Promise<{ locale: string; slug: string }>
 
@@ -17,15 +18,37 @@ export function generateStaticParams() {
   )
 }
 
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: { params: Params },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const { locale, slug } = await params
   const project = getProject(slug)
   if (!project || !isLocale(locale)) return {}
 
+  const path = `/projects/${slug}`
+  const description = project.tagline[locale]
+  const { openGraph, twitter } = await parent
+
+  // Whatever is set here replaces the layout's value wholesale, so the language
+  // links and the Open Graph url must be spelled out for this page.
   return {
     title: project.name,
-    description: project.tagline[locale],
-    alternates: { canonical: `/${locale}/projects/${slug}` },
+    description,
+    alternates: { canonical: `/${locale}${path}`, languages: languageAlternates(path) },
+    openGraph: {
+      title: `${project.name}, ${resume.name}`,
+      description,
+      type: 'article',
+      url: `/${locale}${path}`,
+      images: openGraph?.images,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${project.name}, ${resume.name}`,
+      description,
+      images: twitter?.images,
+    },
   }
 }
 
@@ -38,8 +61,26 @@ export default async function ProjectPage({ params }: { params: Params }) {
 
   const dict = await getDictionary(locale as Locale)
 
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: project.name,
+    description: project.summary[locale as Locale],
+    url: `${SITE_URL}/${locale}/projects/${slug}`,
+    image: project.cover ? `${SITE_URL}${project.cover}` : undefined,
+    dateCreated: project.year,
+    inLanguage: locale,
+    keywords: project.techs.join(', '),
+    author: { '@type': 'Person', name: resume.name, url: `${SITE_URL}/${locale}` },
+    sameAs: [project.url, project.repo].filter(Boolean),
+  }
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
+      />
       <Link href={`/${locale}#projects`} className={styles.back}>
         <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
           <path

@@ -17,8 +17,6 @@ export default function StructuredData({ locale, siteUrl }: StructuredDataProps)
     .map((item) => item.href)
     .filter((href): href is string => Boolean(href))
 
-  const email = resume.contact.find((item) => item.type === 'email')?.label
-
   // schema.org reads `worksFor` as present tense, so a finished contract does
   // not belong here. Omitted entirely when nothing is ongoing.
   const current = resume.experiences.filter(
@@ -33,7 +31,6 @@ export default function StructuredData({ locale, siteUrl }: StructuredDataProps)
     description: resume.intro[locale],
     url: `${siteUrl}/${locale}`,
     image: `${siteUrl}${resume.portrait.src}`,
-    email,
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Paris',

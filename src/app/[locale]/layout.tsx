@@ -13,9 +13,11 @@ import { resume } from '@/data/resume'
 import { isLocale, locales, type Locale } from '@/i18n/config'
 import { getDictionary } from '@/i18n/dictionaries'
 import { fontVariables } from '@/lib/fonts'
+import { languageAlternates, SITE_URL } from '@/lib/site'
 import '@/styles/main.scss'
 
-const SITE_URL = 'https://ryanchikhi.com'
+// Open Graph wants a full language_TERRITORY tag, not the bare locale.
+const ogLocales: Record<Locale, string> = { fr: 'fr_FR', en: 'en_US' }
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
@@ -38,9 +40,17 @@ export async function generateMetadata({
     description,
     alternates: {
       canonical: `/${locale}`,
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+      languages: languageAlternates(),
     },
-    openGraph: { title, description, locale, type: 'website', url: `/${locale}` },
+    openGraph: {
+      title,
+      description,
+      locale: ogLocales[locale],
+      alternateLocale: locales.filter((l) => l !== locale).map((l) => ogLocales[l]),
+      siteName: resume.name,
+      type: 'profile',
+      url: `/${locale}`,
+    },
     twitter: { card: 'summary_large_image', title, description },
   }
 }

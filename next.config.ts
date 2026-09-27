@@ -7,6 +7,19 @@ const nextConfig: NextConfig = {
     // text in UI screenshots. Picture asks for 90.
     qualities: [75, 90],
   },
+  // CSP is left out: the inline theme script and JSON-LD would need nonces.
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+        ],
+      },
+    ]
+  },
   sassOptions: {
     loadPaths: [path.join(process.cwd(), 'src/styles')],
     additionalData: `@use 'abstracts' as *;`,
