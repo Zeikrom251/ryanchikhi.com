@@ -38,7 +38,7 @@ export default function Footer({ locale, dict }: FooterProps) {
             <span>GitHub</span>
           </a>
         )}
-        <a href={`/${locale}#projects`}>
+        <a href={`/${locale}/projects`}>
           <GridIcon />
           <span>{dict.nav.projects}</span>
         </a>

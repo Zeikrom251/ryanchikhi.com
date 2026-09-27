@@ -10,17 +10,23 @@ interface ProjectsProps {
   dict: Dictionary
 }
 
+// The home page shows the first few; the full list lives on /projects (reached
+// from the header), so order `resume.projects` with the ones to feature first.
+const FEATURED = 4
+
 export default function Projects({ locale, dict }: ProjectsProps) {
+  const featured = resume.projects.slice(0, FEATURED)
+
   return (
     <section id="projects" className={styles.projects}>
       <div className={styles.grid}>
-        {resume.projects.map((project, index) => (
+        {featured.map((project, index) => (
           <Reveal key={project.slug} delay={index * 0.06} className={styles.item}>
             <ProjectCard
               project={project}
               locale={locale}
               ctaLabel={dict.sections.projects.viewCase}
-              wide={resume.projects.length === 1}
+              wide={featured.length === 1}
             />
           </Reveal>
         ))}

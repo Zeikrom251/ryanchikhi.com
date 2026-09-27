@@ -29,11 +29,14 @@
     opacity var(--duration-fast) var(--ease-out),
     transform var(--duration-fast) var(--ease-out);
 
-  &:hover {
-    background: var(--color-primary-soft);
-    color: var(--color-primary);
-    opacity: 1;
-    transform: scale(1.05);
+  // Hover only where there is a pointer; touch screens keep it after a tap.
+  @media (hover: hover) {
+    &:hover {
+      background: var(--color-primary-soft);
+      color: var(--color-primary);
+      opacity: 1;
+      transform: scale(1.05);
+    }
   }
 
   &:active {

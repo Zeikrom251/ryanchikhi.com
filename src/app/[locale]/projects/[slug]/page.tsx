@@ -81,7 +81,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
       />
-      <Link href={`/${locale}#projects`} className={styles.back}>
+      <Link href={`/${locale}/projects`} className={styles.back}>
         <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
           <path
             d="M13 8H3M7 4 3 8l4 4"

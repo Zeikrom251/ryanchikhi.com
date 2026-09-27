@@ -36,6 +36,10 @@
       "title": "Soft skills"
     }
   },
+  "projectsPage": {
+    "title": "Projets",
+    "intro": "Tout ce que j'ai construit, de l'idée au déploiement. Chaque projet a sa propre page avec le contexte, les choix techniques et la stack."
+  },
   "project": {
     "backToProjects": "Retour aux projets",
     "role": "Rôle",

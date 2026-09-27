@@ -34,39 +34,33 @@ export default function Navigation({ locale, dict }: NavigationProps) {
 
   const home = `/${locale}`
   const onHome = pathname === home
+  const onProjects = pathname.startsWith(`${home}/projects`)
 
-  // Highlights whichever section is currently in view, so Projects/Contact
-  // light up the same way Home does when they're not just link targets.
-  const [activeSection, setActiveSection] = useState<'projects' | 'contact' | null>(null)
+  // Lights up Contact while the footer is in view, the same way Home does.
+  // Only meaningful on the home page, so it is gated there rather than reset.
+  const [contactInView, setContactInView] = useState(false)
+  const activeSection = onHome && contactInView ? 'contact' : null
 
   useEffect(() => {
-    if (!onHome) {
-      setActiveSection(null)
-      return
-    }
-    const sections = ['projects', 'contact']
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el !== null)
+    if (!onHome) return
+    const contact = document.getElementById('contact')
+    if (!contact) return
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((entry) => entry.isIntersecting)
-        if (visible.length === 0) return
-        setActiveSection(visible[0].target.id as 'projects' | 'contact')
-      },
-      { rootMargin: '-40% 0px -55% 0px' },
+      ([entry]) => setContactInView(entry.isIntersecting),
+      { rootMargin: '-40% 0px -55% 0px' }
     )
 
-    sections.forEach((section) => observer.observe(section))
+    observer.observe(contact)
     return () => observer.disconnect()
   }, [onHome])
 
-  const scrollToHash = (id: 'projects' | 'contact') => (event: React.MouseEvent) => {
+  const scrollToHash = (id: 'contact') => (event: React.MouseEvent) => {
     if (!onHome) return
     const target = document.getElementById(id)
     if (!target) return
     event.preventDefault()
-    setActiveSection(id)
+    setContactInView(true)
     if (lenis) lenis.scrollTo(target)
     else target.scrollIntoView({ behavior: 'smooth' })
   }
@@ -84,7 +78,7 @@ export default function Navigation({ locale, dict }: NavigationProps) {
           onClick={(event) => {
             if (!onHome) return
             event.preventDefault()
-            setActiveSection(null)
+            setContactInView(false)
             if (lenis) lenis.scrollTo(0)
             else window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
@@ -117,24 +111,23 @@ export default function Navigation({ locale, dict }: NavigationProps) {
           <Link
             href={home}
             className={`${styles.link} ${onHome && !activeSection ? styles.active : ''}`}
-            onClick={() => setActiveSection(null)}
+            onClick={() => setContactInView(false)}
           >
             <HomeIcon />
             <span>{dict.nav.home}</span>
           </Link>
 
-          <a
-            href={`${home}#projects`}
-            className={`${styles.link} ${activeSection === 'projects' ? styles.active : ''}`}
-            onClick={scrollToHash('projects')}
+          <Link
+            href={`${home}/projects`}
+            className={`${styles.link} ${onProjects ? styles.active : ''}`}
           >
             <GridIcon />
             <span>{dict.nav.projects}</span>
-          </a>
+          </Link>
 
           <a
             href={`${home}#contact`}
-            className={`${styles.link} ${styles.linkWide} ${activeSection === 'contact' ? styles.active : ''}`}
+            className={`${styles.link} ${activeSection === 'contact' ? styles.active : ''}`}
             onClick={scrollToHash('contact')}
           >
             <MailIcon />
