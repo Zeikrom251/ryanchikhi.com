@@ -111,6 +111,57 @@ export const resume: Resume = {
       repo: 'https://github.com/Zeikrom251/undercut.click',
       url: 'https://www.undercut.click',
     },
+    {
+      slug: 'emeraldcast',
+      name: 'EmeraldCast',
+      logo: '/logos/emeraldcast.svg',
+      cover: '/projects/emeraldcast.webp',
+      kind: { fr: 'Projet personnel', en: 'Side project' },
+      accent: 'linear-gradient(140deg, #03140d 0%, #0b5c3d 55%, #2ee59d 100%)',
+      year: '2026',
+      role: { fr: 'Conception et développement', en: 'Design and development' },
+      tagline: {
+        fr: 'Plusieurs streams Twitch sur un seul écran, avec un chat fusionné.',
+        en: 'Several Twitch streams on one screen, with one merged chat.',
+      },
+      summary: {
+        fr: 'Visionneuse multi-streams pour Twitch : plusieurs lives côte à côte, réorganisés par glisser-déposer, et tous les chats réunis dans un seul fil. Un site statique en React et TypeScript, sans compte et sans backend.',
+        en: 'A multi-stream viewer for Twitch: several live streams side by side, rearranged with drag and drop, and every chat merged into one feed. A static React and TypeScript site, with no account and no backend.',
+      },
+      body: {
+        fr: [
+          "EmeraldCast permet de regarder autant de streams Twitch que l'on veut sur un seul écran. On passe d'une grille à un mode focus (un stream principal et une barre latérale redimensionnable), on réorganise les tuiles par glisser-déposer et on choisit quel stream garde le son pendant que les autres restent muets.",
+          "Tout se passe dans le navigateur, sans serveur. Les lecteurs utilisent les embeds officiels de Twitch, la recherche de chaînes, les catégories et le statut en direct (spectateurs, durée, fin de live) passent par l'API GraphQL publique de Twitch, et le chat unifié se connecte en lecture seule à la passerelle IRC de Twitch via WebSocket, avec les emotes et une couleur par chaîne.",
+          "Le projet a d'abord eu un serveur et des paquets partagés, que j'ai retirés une fois que tout pouvait être fait côté client : moins de pièces à héberger, et une application qui se déploie comme une simple page statique.",
+          'Côté usage, il y a une palette de commandes (⌘K), des raccourcis clavier, des murs de streams sauvegardés, des liens de partage qui encodent toute la configuration, et une synchronisation entre onglets. Tout ce qui est enregistré reste dans le localStorage.',
+        ],
+        en: [
+          'EmeraldCast lets you watch as many Twitch streams as you want on one screen. You switch between a grid and a focus mode (one main stream and a resizable sidebar), rearrange tiles with drag and drop, and pick which stream keeps its audio while the rest stay muted.',
+          "Everything runs in the browser, with no server. Players use Twitch's official embeds, channel search, categories and live status (viewers, uptime, ended broadcasts) go through Twitch's public GraphQL API, and the unified chat connects read-only to Twitch's IRC gateway over WebSocket, with emotes and one colour per channel.",
+          'The project started with a server and shared packages, which I removed once everything could run on the client: fewer pieces to host, and an app that deploys as a plain static page.',
+          'On the usability side there is a command palette (⌘K), keyboard shortcuts, saved stream walls, share links that encode the whole setup, and sync across tabs. Everything saved stays in localStorage.',
+        ],
+      },
+      highlights: {
+        fr: [
+          'Grille ou mode focus, réorganisation par glisser-déposer (dnd-kit)',
+          'Chat unifié en direct via la passerelle IRC WebSocket de Twitch',
+          "Recherche, catégories et statut en direct via l'API GraphQL de Twitch",
+          'Palette de commandes ⌘K, raccourcis clavier, murs sauvegardés et liens de partage',
+          'Application 100 % statique : pas de compte, pas de backend',
+        ],
+        en: [
+          'Grid or focus layout, drag-and-drop reordering (dnd-kit)',
+          "Live unified chat through Twitch's IRC WebSocket gateway",
+          "Search, categories and live status through Twitch's GraphQL API",
+          '⌘K command palette, keyboard shortcuts, saved walls and share links',
+          'Fully static app: no account, no backend',
+        ],
+      },
+      techs: ['React', 'TypeScript', 'Vite', 'SCSS', 'dnd-kit', 'Vitest', 'Vercel'],
+      repo: 'https://github.com/Zeikrom251/EmeraldCast',
+      url: 'https://emeraldcast.vercel.app',
+    },
   ],
 
   // ---- TECH SKILLS ---------------------------------------------------------
