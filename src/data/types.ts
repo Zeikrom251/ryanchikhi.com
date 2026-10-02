@@ -89,9 +89,9 @@ export interface Project {
   /** Square mark shown beside the name on the card. */
   logo?: string
   kind: Localized
-  /** Wide image filling the card's banner panel on the home page. */
+  /** Card image, when it should differ from `cover`. */
   banner?: string
-  /** Header artwork for the project page only; it does not touch the card. */
+  /** Header artwork for the project page, and the card image when there is no `banner`. */
   cover?: string
   accent: string
   tagline: Localized

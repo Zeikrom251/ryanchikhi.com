@@ -21,6 +21,10 @@
     gap: 1.25rem;
   }
 
+  @include lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   > *:only-child {
     grid-column: 1 / -1;
   }

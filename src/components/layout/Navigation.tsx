@@ -46,10 +46,9 @@ export default function Navigation({ locale, dict }: NavigationProps) {
     const contact = document.getElementById('contact')
     if (!contact) return
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setContactInView(entry.isIntersecting),
-      { rootMargin: '-40% 0px -55% 0px' }
-    )
+    const observer = new IntersectionObserver(([entry]) => setContactInView(entry.isIntersecting), {
+      rootMargin: '-40% 0px -55% 0px',
+    })
 
     observer.observe(contact)
     return () => observer.disconnect()

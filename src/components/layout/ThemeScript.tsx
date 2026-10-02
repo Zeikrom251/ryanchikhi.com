@@ -12,7 +12,5 @@ const script = `
 `
 
 export default function ThemeScript() {
-  return (
-    <script id="theme-init" dangerouslySetInnerHTML={{ __html: script }} />
-  )
+  return <script id="theme-init" dangerouslySetInnerHTML={{ __html: script }} />
 }
