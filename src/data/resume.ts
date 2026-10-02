@@ -54,7 +54,7 @@ export const resume: Resume = {
       cover: '/undercut_twittercard_normal.webp',
       kind: { fr: 'Projet personnel', en: 'Side project' },
       accent: 'linear-gradient(140deg, #0f5c36 0%, #1e8a52 55%, #4dc98a 100%)',
-      year: '2026',
+      year: 'March 2026',
       role: { fr: 'Conception et développement', en: 'Design and development' },
       tagline: {
         fr: 'Pronostics de sport automobile entre amis, sur une saison complète.',
@@ -118,7 +118,7 @@ export const resume: Resume = {
       cover: '/projects/emeraldcast.webp',
       kind: { fr: 'Projet personnel', en: 'Side project' },
       accent: 'linear-gradient(140deg, #03140d 0%, #0b5c3d 55%, #2ee59d 100%)',
-      year: '2026',
+      year: 'June 2026',
       role: { fr: 'Conception et développement', en: 'Design and development' },
       tagline: {
         fr: 'Plusieurs streams Twitch sur un seul écran, avec un chat fusionné.',
@@ -161,6 +161,56 @@ export const resume: Resume = {
       techs: ['React', 'TypeScript', 'Vite', 'SCSS', 'dnd-kit', 'Vitest', 'Vercel'],
       repo: 'https://github.com/Zeikrom251/EmeraldCast',
       url: 'https://emeraldcast.vercel.app',
+    },
+    {
+      slug: 'stewardpad',
+      name: 'StewardPad',
+      logo: '/logos/stewardpad.svg',
+      cover: '/projects/stewardpad.webp',
+      kind: { fr: 'Projet open source', en: 'Open source project' },
+      accent: 'linear-gradient(140deg, #0e1116 0%, #c40d1c 60%, #ff453a 100%)',
+      year: 'September 2026',
+      role: { fr: 'Conception et développement', en: 'Design and development' },
+      tagline: {
+        fr: 'La direction de course des ligues Le Mans Ultimate, sur son propre PC.',
+        en: 'Race control for Le Mans Ultimate leagues, on your own PC.',
+      },
+      summary: {
+        fr: "Application de bureau Windows, libre et gratuite, pour les commissaires de ligues Le Mans Ultimate : on note un incident d'une touche pendant la course, on le revoit plus tard face au replay, et on publie des décisions lisibles par les pilotes. Un backend Rust et une interface React, empaquetés avec Tauri.",
+        en: 'A free and open source Windows desktop app for Le Mans Ultimate league stewards: log an incident with one keypress during the race, review it later against the replay, and publish decisions drivers can read. A Rust backend and a React UI, packaged with Tauri.',
+      },
+      body: {
+        fr: [
+          "StewardPad suit la course en direct en lisant l'API REST locale de Le Mans Ultimate. Pendant la course, une pression sur Espace enregistre un incident horodaté quelques secondes en arrière (10 par défaut), là où le replay doit reprendre, et on choisit les voitures depuis le classement ou avec les touches 1 à 9. Si le jeu est fermé, l'application le signale, réessaie toutes les 5 secondes, et la saisie continue de fonctionner. Un simulateur intégré remplace le jeu pour s'entraîner ou faire une démo.",
+          "Après la course, une file de revue présente chaque incident non tranché dans l'ordre de la course, en plein écran, avec le règlement de la ligue à un clic. Le règlement s'importe depuis Google Docs ou Word en gardant sa numérotation (3.3.a, 3.4.b.iii), et chaque décision cite les articles enfreints.",
+          "Côté publication, StewardPad produit un document officiel des décisions (page web ou PDF), une feuille de pénalités, des tableurs pilotes et journal complet, un fichier JSON de résultats, et poste chaque changement de statut sur le Discord de la ligue. Plusieurs commissaires peuvent travailler sur la même course : chacun exporte sa session, et l'import les fusionne incident par incident.",
+          "Le backend est en Rust : un adaptateur isole tout ce qui parle au jeu, la session est écrite de façon atomique pour qu'un crash ne laisse jamais un fichier à moitié écrit, et les exports CSV sont générés à la main pour Excel. L'interface est en React avec Tauri 2, et chaque version publiée sur GitHub est signée et proposée en mise à jour dans l'application.",
+        ],
+        en: [
+          "StewardPad follows the race live by reading Le Mans Ultimate's local REST API. During the race, pressing Space logs an incident stamped a few seconds back (10 by default), where the replay needs to start, and the cars are picked from the standings or with the 1 to 9 keys. If the game is closed, the app says so, retries every 5 seconds, and logging keeps working. A built-in simulator stands in for the game for training and demos.",
+          "After the race, a review queue shows every undecided incident in race order, full screen, with the league's rule book one click away. The rule book is imported from Google Docs or Word with its numbering kept (3.3.a, 3.4.b.iii), and each decision cites the rules that were broken.",
+          "For publishing, StewardPad produces a formal stewards' decisions document (web page or PDF), a penalty sheet, driver and full-log spreadsheets, a results JSON file, and posts each status change to the league's Discord. Several stewards can work the same race: each one exports their session, and importing merges them incident by incident.",
+          'The backend is Rust: one adapter isolates everything that talks to the game, the session is written atomically so a crash never leaves half a file, and the CSV exports are hand-built for Excel. The UI is React on Tauri 2, and every release published on GitHub is signed and offered as an in-app update.',
+        ],
+      },
+      highlights: {
+        fr: [
+          "Saisie d'un incident en une touche, horodaté au bon endroit du replay",
+          "Classement en direct via l'API REST locale de Le Mans Ultimate, avec un simulateur intégré",
+          'File de revue et règlement de ligue importé depuis Google Docs ou Word',
+          'Document des décisions, feuilles de résultats et annonces Discord en direct',
+          "Fusion des sessions de plusieurs commissaires, mises à jour signées dans l'application",
+        ],
+        en: [
+          'One-keypress incident logging, stamped where the replay needs to start',
+          "Live standings from Le Mans Ultimate's local REST API, with a built-in simulator",
+          'Review queue and a league rule book imported from Google Docs or Word',
+          "Stewards' decisions document, results sheets and live Discord announcements",
+          'Session merging across several stewards, signed in-app updates',
+        ],
+      },
+      techs: ['Rust', 'Tauri', 'React', 'TypeScript', 'Vite', 'SCSS', 'Tiptap'],
+      repo: 'https://github.com/Zeikrom251/StewardPad',
     },
   ],
 
