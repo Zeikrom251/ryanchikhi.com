@@ -212,6 +212,55 @@ export const resume: Resume = {
       techs: ['Rust', 'Tauri', 'React', 'TypeScript', 'Vite', 'SCSS', 'Tiptap'],
       repo: 'https://github.com/Zeikrom251/StewardPad',
     },
+    {
+      slug: 'papillon',
+      name: 'Papillon',
+      logo: '/logos/papillon.webp',
+      kind: { fr: 'Contribution open source', en: 'Open source contribution' },
+      accent: 'linear-gradient(140deg, #1d5c4a 0%, #2f9a80 55%, #4cc5a6 100%)',
+      year: 'September 2026',
+      role: { fr: 'Contributeur', en: 'Contributor' },
+      tagline: {
+        fr: 'Corrections et fonctionnalités sur une application de vie scolaire open source.',
+        en: 'Fixes and features on an open source school life app.',
+      },
+      summary: {
+        fr: "Papillon est une application mobile libre pour suivre sa vie scolaire (notes, emploi du temps, devoirs), en React Native et TypeScript. J'y contribue en tant que contributeur externe : j'y ai corrigé un bug propre à Android et proposé une nouvelle fonctionnalité, avec les revues des mainteneurs.",
+        en: "Papillon is a free mobile app for school life (grades, timetable, homework), built with React Native and TypeScript. I contribute as an external contributor: I fixed an Android-only bug and proposed a new feature, going through the maintainers' reviews.",
+      },
+      body: {
+        fr: [
+          "Papillon est une application open source en React Native (Expo) et TypeScript, qui regroupe les services scolaires d'un élève. Je n'en suis pas mainteneur : je contribue depuis un fork, en ouvrant des tickets et des pull requests sur la branche dev, relues par l'équipe.",
+          "Mon correctif le plus abouti concerne le bouton « Sélectionner » du sélecteur d'émoji des matières, qui ne répondait pas sur Android (ticket #861). J'ai trouvé la cause : le bouton s'appuie sur react-native-gesture-handler, or sur Android un Modal s'ouvre dans une fenêtre native séparée, hors du GestureHandlerRootView global, et ne reçoit donc aucun toucher. Envelopper le contenu du Modal dans son propre GestureHandlerRootView règle le problème. La pull request #862 a été approuvée puis fusionnée par un mainteneur.",
+          "J'ai aussi proposé la pull request #832, qui ajoute sur Android un bouton pour supprimer le fond d'écran choisi (iOS garde son menu natif). J'ai soumis deux maquettes à la communauté sur Discord, gardé celle qui s'accorde à la grille des vignettes, puis corrigé le retour à la ligne du libellé après un test d'un relecteur sur un autre téléphone. Elle est approuvée et attend la fusion.",
+          "J'ai enfin relu la pull request #845 d'un autre contributeur, qui restaure la fonctionnalité de transport, et fait des retours sur l'affichage de l'itinéraire.",
+        ],
+        en: [
+          "Papillon is an open source app built with React Native (Expo) and TypeScript, bringing a student's school services together. I am not a maintainer: I contribute from a fork, opening issues and pull requests against the dev branch, which the team reviews.",
+          'My most complete fix is the "Sélectionner" button in the subject emoji picker, which did nothing on Android (issue #861). I tracked down the cause: the button relies on react-native-gesture-handler, but on Android a Modal opens in a separate native window outside the global GestureHandlerRootView, so it receives no touches. Wrapping the Modal\'s content in its own GestureHandlerRootView fixes it. Pull request #862 was approved and merged by a maintainer.',
+          'I also proposed pull request #832, which adds a button on Android to remove the chosen wallpaper (iOS keeps its native menu). I put two mockups to the community on Discord, kept the one that matches the thumbnail grid, then fixed the label wrapping after a reviewer tested it on another phone. It is approved and waiting to be merged.',
+          'Finally, I reviewed pull request #845 from another contributor, which restores the transport feature, and gave feedback on how the itinerary is displayed.',
+        ],
+      },
+      highlights: {
+        fr: [
+          'Correctif Android fusionné (#862) : cause trouvée dans react-native-gesture-handler et les Modal',
+          'Fonctionnalité proposée avec maquettes soumises à la communauté (#832), approuvée',
+          'Ticket détaillé avec étapes de reproduction, appareils et version (#861)',
+          "Relecture d'une pull request d'un autre contributeur (#845)",
+          "Travail sur un dépôt que je n'ai pas écrit : conventions, branche dev, revues des mainteneurs",
+        ],
+        en: [
+          'Merged Android fix (#862): root cause found in react-native-gesture-handler and Modals',
+          'Feature proposed with mockups put to the community (#832), approved',
+          'Detailed issue with reproduction steps, devices and version (#861)',
+          "Review of another contributor's pull request (#845)",
+          'Working in a codebase I did not write: conventions, the dev branch, maintainer reviews',
+        ],
+      },
+      techs: ['React Native', 'Expo', 'TypeScript', 'Git', 'GitHub'],
+      repo: 'https://github.com/PapillonApp/Papillon',
+    },
   ],
 
   // ---- TECH SKILLS ---------------------------------------------------------
@@ -624,8 +673,8 @@ export const resume: Resume = {
       id: 'opensource',
       title: { fr: 'Open source', en: 'Open source' },
       body: {
-        fr: "J'ai contribué à Leaf-it-to-me pendant mon alternance. Lire et corriger le code des autres reste la façon la plus rapide que je connaisse de progresser.",
-        en: "I contributed to Leaf-it-to-me during my apprenticeship. Reading and fixing other people's code is still the fastest way I know to get better.",
+        fr: "J'ai contribué à Leaf-it-to-me pendant mon alternance, et je contribue aujourd'hui à Papillon, une application de vie scolaire : un correctif Android fusionné, une fonctionnalité en revue. Lire et corriger le code des autres reste la façon la plus rapide que je connaisse de progresser.",
+        en: "I contributed to Leaf-it-to-me during my apprenticeship, and now contribute to Papillon, a school life app: one Android fix merged, one feature in review. Reading and fixing other people's code is still the fastest way I know to get better.",
       },
     },
     {
