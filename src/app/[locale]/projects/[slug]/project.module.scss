@@ -156,6 +156,26 @@
   }
 }
 
+// The case study modules carry small captions, so on wide screens they spill
+// past the sheet the way the About photos do, up to about 1100px.
+.gallery {
+  display: grid;
+  gap: 1.5rem;
+
+  @include xl {
+    --gallery-width: min(68.75rem, calc(100vw - 4rem));
+    width: var(--gallery-width);
+    margin-inline: calc((100% - var(--gallery-width)) / 2);
+  }
+}
+
+.galleryImage {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-line);
+}
+
 .highlights {
   display: grid;
   gap: 0.625rem;
