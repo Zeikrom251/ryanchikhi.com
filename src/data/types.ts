@@ -101,6 +101,8 @@ export interface Project {
   role: Localized
   year: string
   techs: string[]
+  /** Images stacked on the project page between the overview and the highlights. */
+  gallery?: { src: Localized; alt: Localized; width: number; height: number }[]
   repo?: string
   url?: string
 }

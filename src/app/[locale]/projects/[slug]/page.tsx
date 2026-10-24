@@ -79,7 +79,9 @@ export default async function ProjectPage({ params }: { params: Params }) {
     <article>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, '\\u003c'),
+        }}
       />
       <Link href={`/${locale}/projects`} className={styles.back}>
         <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
@@ -170,6 +172,24 @@ export default async function ProjectPage({ params }: { params: Params }) {
           ))}
         </div>
       </section>
+
+      {project.gallery && (
+        <div className={`${styles.block} ${styles.gallery}`}>
+          {project.gallery.map((image) => (
+            <Reveal key={image.src[locale]}>
+              <Image
+                src={image.src[locale]}
+                alt={image.alt[locale]}
+                width={image.width}
+                height={image.height}
+                sizes="(min-width: 1280px) 1100px, (max-width: 899px) 100vw, 800px"
+                quality={90}
+                className={styles.galleryImage}
+              />
+            </Reveal>
+          ))}
+        </div>
+      )}
 
       <section className={styles.block}>
         <h2 className={styles.blockTitle}>{dict.project.highlights}</h2>
