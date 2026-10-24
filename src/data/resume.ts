@@ -84,14 +84,16 @@ export const resume: Resume = {
           'API REST NestJS avec Prisma comme ORM, sur une base MySQL',
           "Authentification BetterAuth, système d'amis et classements saisonniers",
           "Intégration de l'API du calendrier officiel de Formule 1",
-          'Déploiement continu via GitHub Actions, sur Vercel (frontend) et Render (backend)',
+          'Déploiement sur Railway via GitHub Actions, une fois la CI passée : API, site et bot en images Docker',
+          "Mesure d'audience avec Umami, auto-hébergé sur Railway",
         ],
         en: [
           'Turborepo monorepo: types shared across the client, the API and the Discord bot',
           'NestJS REST API with Prisma as the ORM, on a MySQL database',
           'BetterAuth authentication, friends system and seasonal leaderboards',
           'Integration of the official Formula 1 calendar API',
-          'Continuous deployment through GitHub Actions, to Vercel (frontend) and Render (backend)',
+          'Deployment to Railway through GitHub Actions once CI passes: the API, site and bot as Docker images',
+          'Audience analytics with Umami, self-hosted on Railway',
         ],
       },
       techs: [
@@ -105,11 +107,12 @@ export const resume: Resume = {
         'BetterAuth',
         'Turborepo',
         'GitHub Actions',
-        'Vercel',
-        'Render',
+        'Docker',
+        'Railway',
+        'Umami',
       ],
       repo: 'https://github.com/Zeikrom251/undercut.click',
-      url: 'https://www.undercut.click',
+      url: 'https://undercut.click',
     },
     {
       slug: 'emeraldcast',
@@ -394,12 +397,12 @@ export const resume: Resume = {
         },
         points: {
           fr: [
-            'Déploiement continu sur Vercel et Render pour Undercut',
+            'Déploiement sur Railway via GitHub Actions pour Undercut, une fois la CI passée',
             "Pipelines CI/CD GitLab CI et plans de tests d'intégration chez Tilkal",
             'Jeux de données factices structurés pour accélérer et fiabiliser les recettes',
           ],
           en: [
-            'Continuous deployment to Vercel and Render for Undercut',
+            'Deployment to Railway through GitHub Actions for Undercut, once CI passes',
             'GitLab CI pipelines and integration test plans at Tilkal',
             'Structured mock datasets to speed up and harden acceptance testing',
           ],
@@ -454,13 +457,13 @@ export const resume: Resume = {
         ],
       },
       picture: {
-        src: '/pic2.png',
-        // The source is 1872x969. Cropping a dashboard to 4/3 cut off the
+        src: '/undercut-dashboard.png',
+        // The source is 1919x1079. Cropping a dashboard to 4/3 cut off the
         // sidebar and forced the browser to upscale it.
-        aspect: '1872 / 969',
+        aspect: '1919 / 1079',
         caption: {
-          fr: "Le tableau de bord d'Undercut, un dimanche de Grand Prix.",
-          en: "Undercut's dashboard on a race Sunday.",
+          fr: "Le tableau de bord d'Undercut, un week-end de Grand Prix.",
+          en: "Undercut's dashboard on a race weekend.",
         },
       },
     },
